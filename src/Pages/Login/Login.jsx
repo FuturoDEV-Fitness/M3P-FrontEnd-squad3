@@ -2,6 +2,9 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
@@ -12,6 +15,11 @@ import theme from '../../Components/Temas/temaBotao'
 
 import styles from './login.module.css'
 
+const formSchema = yup.object().shape({
+    email: yup.string().email('Formato de e-mail inválido!').required('Campo obrigatório'), 
+    senha: yup.string().required('Senha é obrigatória').min(8, 'Minimo de 8 caracteres').max(16, 'Maximo de 16 caracteres')
+})
+
 function Login() {
     //Função para mostrar ou ocultar a senha
     const [showPassword, setShowPassword] = useState(false);
@@ -21,7 +29,9 @@ function Login() {
         register,
         handleSubmit,
         formState: { errors }
-    } = useForm()
+    } = useForm({
+        resolver: yupResolver(formSchema)
+    })
 
     async function formularioLogin(dadosForm){
         console.log(dadosForm)
@@ -41,10 +51,7 @@ function Login() {
                 <form className={styles.formLogin} onSubmit={handleSubmit(formularioLogin)}>
                     <label htmlFor="email">E-mail</label>
                     <input  type="email" placeholder="Informe o e-mail" 
-                        {...register("email", {
-                            required: "Campo obrigatório!",
-                            maxLength: {value:50, message:"Deve possuir no máximo 50 caracteres"}
-                        })}                                    
+                        {...register("email")}                                    
                     />
                     {errors?.email && <p className={styles.msgErro}><WarningAmberIcon fontSize="small" sx={{"mr":1}}/>{errors.email.message}</p>}
 
@@ -52,10 +59,7 @@ function Login() {
                     <div className={styles.containerSenha}>
                         <input type={showPassword ? 'text' : 'password'}
                         placeholder="Informe uma senha"
-                            {...register("senha", {
-                                required: "Campo obrigatório!",
-                                minLength: {value:6, message:"Deve possuir no mínimo 6"}
-                            })}
+                            {...register("senha")}
                         />
 
                         <div onClick={handleClickShowPassword} className={styles.iconeSenha}>
