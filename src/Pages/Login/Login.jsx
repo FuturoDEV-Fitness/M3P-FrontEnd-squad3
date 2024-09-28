@@ -81,7 +81,7 @@ function Login() {
                     </div>
                 </form>
 
-                <p >Não possui uma conta? Cadastre-se!</p>
+                <p >Não possui uma conta? <Link to="/novoUsuario" className={styles.linkLogin}>Cadastre-se</Link>!</p>
             </div>
         </div>
     )
