@@ -5,7 +5,6 @@ function App() {
 
   return (
     <>
-      <h1>Aqui é o App</h1>
       <Outlet />
     </>
   )

@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -10,6 +11,8 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import theme from '../../Components/Temas/temaBotao'
 import { ThemeProvider } from '@mui/material/styles'
+
+import Header from '../../Components/Header/Header.jsx'
 
 import useCep from '../../Hooks/useCep.jsx'
 import { useCreateUser } from '../../Hooks/useCreate.jsx'
@@ -82,7 +85,9 @@ function NovoUsuario(){
 
     return(
         <div>
-            <h1>Tela de cadastro de Usuário</h1>
+            <Header>
+                <Link to='/'>Home</Link>
+            </Header>
 
             <div className={styles.containerNovoUsuario}>
                 <h3>Preencha os campos abaixo para cadastrar-se!</h3>

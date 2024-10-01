@@ -13,11 +13,13 @@ import { Button} from '@mui/material'
 import { ThemeProvider } from '@mui/material/styles'
 import theme from '../../Components/Temas/temaBotao'
 
+import Header from '../../Components/Header/Header'
+
 import styles from './login.module.css'
 
 const formSchema = yup.object().shape({
     email: yup.string().email('Formato de e-mail inválido!').required('Campo obrigatório'), 
-    senha: yup.string().required('Senha é obrigatória').min(8, 'Minimo de 8 caracteres').max(16, 'Maximo de 16 caracteres')
+    password: yup.string().required('Senha é obrigatória').min(8, 'Minimo de 8 caracteres').max(16, 'Maximo de 16 caracteres')
 })
 
 function Login() {
@@ -33,13 +35,16 @@ function Login() {
         resolver: yupResolver(formSchema)
     })
 
-    async function formularioLogin(dadosForm){
-        console.log(dadosForm)
+    async function formLogin(formValue){
+        console.log(formValue)
     }
 
     return (
         <div>
-            <h1>Login</h1>
+            <Header>
+                <Link to='/'>Home</Link>
+                <Link to='/novoUsuario'>Cadastrar</Link>
+            </Header>
 
             <div className={styles.containerLogin}>
             <h1 >Seja bem vinda(o) ao</h1>
@@ -48,25 +53,25 @@ function Login() {
                     <img src="/logo.png" alt="" width={"80px"} />
                 </div>
 
-                <form className={styles.formLogin} onSubmit={handleSubmit(formularioLogin)}>
+                <form className={styles.formLogin} onSubmit={handleSubmit(formLogin)}>
                     <label htmlFor="email">E-mail</label>
                     <input  type="email" placeholder="Informe o e-mail" 
                         {...register("email")}                                    
                     />
                     {errors?.email && <p className={styles.msgErro}><WarningAmberIcon fontSize="small" sx={{"mr":1}}/>{errors.email.message}</p>}
 
-                    <label htmlFor="senha">Senha</label>
+                    <label htmlFor="password">Senha</label>
                     <div className={styles.containerSenha}>
                         <input type={showPassword ? 'text' : 'password'}
                         placeholder="Informe uma senha"
-                            {...register("senha")}
+                            {...register("password")}
                         />
 
                         <div onClick={handleClickShowPassword} className={styles.iconeSenha}>
                             {showPassword ? <VisibilityOff /> : <Visibility />}
                         </div>
                     </div>
-                    {errors?.senha && <p className={styles.msgErro}><WarningAmberIcon fontSize="small" sx={{"mr":1}}/>{errors.senha.message}</p>}
+                    {errors?.password && <p className={styles.msgErro}><WarningAmberIcon fontSize="small" sx={{"mr":1}}/>{errors.password.message}</p>}
 
                     <div className={styles.botaoLogin}>
                         <ThemeProvider theme={theme}>
