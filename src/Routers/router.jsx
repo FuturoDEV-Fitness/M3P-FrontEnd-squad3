@@ -1,9 +1,12 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter } from 'react-router-dom';
 
-import Login from '../Pages/Login/Login.jsx'
-import NovoUsuario from '../Pages/Cadastro/NovoUsuario.jsx'
-import Dashboard from '../Pages/Home/Dashboard.jsx'
-import App from '../App.jsx'
+import App from '../App.jsx';
+import Dashboard from '../Pages/Home/Dashboard.jsx';
+import Login from '../Pages/Login/Login.jsx';
+import NovoUsuario from '../Pages/Cadastro/NovoUsuario.jsx';
+import ListUsers from '../Pages/ListUsers/ListUsers.jsx';
+
+import ListPlace from '../Pages/ListPlaces/ListPlaces.jsx';
 
 const routers = createBrowserRouter([
     {
@@ -21,6 +24,14 @@ const routers = createBrowserRouter([
             {
                 path: "/novoUsuario",
                 element: <NovoUsuario />
+            },
+            {
+                path: "/listaLocais",
+                element: <ListPlace />
+            },
+            {
+                path: "/minhaConta",
+                element: <ListUsers />
             }
         ]
     }

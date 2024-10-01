@@ -1,0 +1,101 @@
+@media all{
+    .divTitulo{
+        background-color: var(--verdeLogo);
+        border-radius: 20px 20px 0 0;
+        padding: 1em;
+    }
+
+    .botaoLogout{
+        background-color: #29B473;
+        font-weight: bold;
+        width: 60px;
+        border: none;
+        border-radius: 4px;
+        padding: 6px 0px;
+        cursor: pointer;
+        margin-left: 1em;
+    }
+    
+    .botaoLogout:hover{
+        background-color: #1c7d50;
+    }
+
+    .divTitulo>h3{
+        text-align: center;
+        margin-bottom: 0.5em;
+    }
+
+    .divTitulo>p{
+        text-align: left;
+        font-weight: bold;
+    }
+    
+    .divTitulo p:last-child{
+        text-align: right;
+        font-weight: bold;
+    }
+
+    .divConteudo{
+        padding-left: 1em;
+    }
+
+    .divConteudo li{
+        margin-left: 2em;    
+    }
+    
+    .divFlex{
+        display: flex;
+        align-items: center;
+        margin-top: 1em;
+    }
+
+    .divBotoes{
+        text-align: center;
+        margin: auto;
+    }
+
+    .divGrid{
+        display: grid;
+        column-gap: 2em;
+        row-gap: 0.4em;
+    
+        grid-template-areas: "rua rua"
+                             "cep bairro"
+                             "num compl"
+                             "link link";
+    }
+    
+    .rua{
+        grid-area: rua;
+    }
+    .cep{
+        grid-area: cep;
+    }
+    .bairro{
+        grid-area: bairro;
+    }
+    .num{
+        grid-area: num;
+    }
+    .rua{
+        grid-area: rua;
+    }
+    .compl{
+        grid-area: compl;
+    }
+    .link{
+        grid-area: link;
+    }
+    
+    .descricao{
+        text-align: center;
+        margin: 1em 0;
+    }
+}
+
+@media(min-width: 769px){
+    .botaoLogout{
+        width: 80px;
+        padding: 6px 16px;
+    }
+}

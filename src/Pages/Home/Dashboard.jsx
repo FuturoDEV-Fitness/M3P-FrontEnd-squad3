@@ -2,9 +2,6 @@ import { Link } from 'react-router-dom'
 
 import Map from '../../Components/Map/Map'
 
-
-
-
 import Header from '../../Components/Header/Header'
 import styles from './dashboard.module.css'
 function Dashboard(){

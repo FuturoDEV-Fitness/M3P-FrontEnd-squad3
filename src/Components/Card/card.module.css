@@ -1,0 +1,17 @@
+@media all{
+    .cardContainer{
+        background-color: #b1b5b9;
+        width: 400px;
+        padding: 1em;
+        border: 1px solid black;
+        border-radius: 20px;    
+        margin: 2em auto;
+    }
+}
+
+@media (min-width: 769px) {
+    .cardContainer{
+        background-image: linear-gradient(to bottom, #757981,  #d9dce0);
+        width: 500px;
+    }
+}
