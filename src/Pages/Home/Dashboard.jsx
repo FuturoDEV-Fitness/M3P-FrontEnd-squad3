@@ -15,6 +15,12 @@ function Dashboard(){
                 <Link to='/novoUsuario'>Cadastrar</Link>
             </Header>
 
+            <div className={styles.logo} >
+                <img src="/logo.png" alt="" width={"80px"} />
+                <h1>Exercite</h1>
+            </div>
+            <h1 className={styles.textoInicial}>Aqui você pode encontrar e compartilhar dicas de locais para prática de alguma atividade física!</h1>
+
             <Map />
         </div>
     )
