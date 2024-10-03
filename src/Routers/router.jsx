@@ -10,6 +10,8 @@ import MyAccount from '../Pages/MyAccount/MyAccount.jsx';
 import EditUser from '../Pages/EditUser/EditUser.jsx';
 
 import NewLocation from '../Pages/RegisterLocation/NewLocation.jsx';
+import ListLocations from '../Pages/ListLocations/ListLocations.jsx';
+
 
 import { AuthContext } from '../Context/AuthContext.jsx';
 
@@ -35,6 +37,10 @@ const routers = createBrowserRouter([
     {
         path: "/novoUsuario",
         element: <NewUser />
+    },
+    {
+        path: "/meusLocais",
+        element: <ListLocations />
     },
 
     {

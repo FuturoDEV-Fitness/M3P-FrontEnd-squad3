@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import { Button } from '@mui/material'
 import { ThemeProvider } from '@mui/material/styles'
@@ -5,56 +6,31 @@ import theme from '../../Components/Temas/temaBotao'
 
 import Card from '../../Components/Card/Card'
 import Header from '../../Components/Header/Header'
-import styles from './listPlaces.module.css'
-function ListPlaces(){
+
+import styles from './listLocations.module.css'
+import { useListLocation } from '../../Hooks/useList';
+function ListLocations(){
 
     ///OBS: PÁGINA EM CONSTRUÇÃO!!!!! 
-    
-    let locais = [{
-        id: 1,
-        nome: 'Praia do Santinho',
-        cidade: 'Florianópolis',
-        estado: 'SC',
-        usuario: 'Aurora',
-        descricao: 'Praia tranquila com água cristalina',
-        tipo: [
-            'Surf',
-            'Corrida'
-        ],
-        ruaLocal: 'Avenida Brigadeiro Faria Lima',
-        cepLocal: '88058310',
-        bairroLocal: 'Santinho',
-        numeroLocal: '',
-        complementoLocal: 'Acesso depois das dunas',
-        link: 'https://www.google.com/maps'
-        },
-        {
-            id: 2,
-            nome: 'Praia do Forte',
-            cidade: 'Florianópolis',
-            estado: 'SC',
-            usuario: 'Aurora',
-            descricao: 'Mar agitado',
-            tipo: [
-                'Surf'
-            ],
-            ruaLocal: 'Avenida Hermosillo',
-            cepLocal: '88058310',
-            bairroLocal: 'Praia Brava',
-            numeroLocal: '',
-            complementoLocal: '',
-            link: 'https://www.google.com/maps'
-        }
-    ]
+
+    const [locations, setLocations] = useState([])
+
+    useEffect(() => {
+        ListLocations()
+    }, [])
+
+    async function ListLocations(){
+        setLocations((await useListLocation()).data)
+    }
 
     function editar(){
         alert('Editar')
-        console.log('editar')
+        alert('editar')
     }
 
     function deletar(){
         alert('Deletar')
-        console.log('deletar')
+        alert('deletar')
     }
 
     function logout(){
@@ -68,14 +44,13 @@ function ListPlaces(){
                 <button onClick={() => logout()} className={styles.botaoLogout}>Logout</button>
             </Header>
 
-
-            {!!locais && locais.map((item => (
-                <Card key={item.id} >  
+            {locations.length > 0 ? locations.map((item) => (
+                <Card key={item.id} >
 
                     <div className={styles.divTitulo}>
-                        <h3>{item.nome}</h3>
+                        <h3>{item.nomeLocal}</h3>
                         <p>{item.cidade}/{item.estado}</p>
-                        <p>Por: {item.usuario}</p>
+                        {<p>Por: {item.usuario.nome}</p>}
                     </div>
 
                     <hr />
@@ -83,13 +58,11 @@ function ListPlaces(){
 
                     <div className={styles.divConteudo}>
                         <p className={styles.descricao}>{item.descricao}</p>
-                        <p>Sugestões de atividades físicas nesse local:</p>
+                        
                         <ul type={"circle"}>
-                            {item.tipo ? item.tipo.map((item, index) => (
-                                <li key={index}>{item}</li>
-                            )) : <li>Alongamento</li>}
-                            {/* Se o usuário não marcar nada, vou exibir Alongamento */}
+                            <li>Sugestões de atividades físicas nesse local:</li>
                         </ul>
+                        <p className={styles.descricao}>{item.tipoAtividade}</p>
 
                         <div className={styles.divFlex}>
                             <img src="/local.png" alt="imagem-ilustrativa"  height={"50px"}/>
@@ -128,13 +101,13 @@ function ListPlaces(){
                         </div>
                     </div>
                 </Card>
-            ) 
-            
-            ))}
-
-
+            )) : 
+                <Card>
+                    <p>Sem dados para mostrar</p>
+                </Card>
+            }
         </div>
     )
 }
 
-export default ListPlaces
+export default ListLocations

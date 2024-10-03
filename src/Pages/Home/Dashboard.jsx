@@ -8,6 +8,7 @@ function Dashboard(){
     return(
         <div>
             <Header>
+                <Link to='/meusLocais'>Listar locais</Link>
                 <Link to='/novoLocal'>Novo local</Link>
                 <Link to='/login'>Login</Link>
                 <Link to='/novoUsuario'>Criar conta</Link>
