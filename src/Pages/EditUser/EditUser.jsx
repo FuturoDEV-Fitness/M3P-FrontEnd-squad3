@@ -38,7 +38,7 @@ function EditUser(){
     }, [])
     //Ao carregar a página, chama a função para pegar as informações atualizadas conforme o id.
     
-    const id = 14  //PROVISÓRIO!!!!!!
+    const id = localStorage.getItem('userId')
 
     const [user, setUser] = useState([])  
 
@@ -99,7 +99,7 @@ function EditUser(){
         }
 
         console.log(dataForm)
-        await useEditUser(id, dataForm)
+        await useEditUser(dataForm)
 
         alert('Atualizado com sucesso!')
 

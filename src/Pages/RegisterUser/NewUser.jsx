@@ -9,7 +9,7 @@ import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import { Button }from '@mui/material'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import theme from '../../Components/Temas/temaBotao'
+import theme from '../../Components/Temas/temaBotao.jsx'
 import { ThemeProvider } from '@mui/material/styles'
 
 import Header from '../../Components/Header/Header.jsx'
@@ -17,7 +17,7 @@ import Header from '../../Components/Header/Header.jsx'
 import useCep from '../../Hooks/useCep.jsx'
 import { useCreateUser } from '../../Hooks/useCreate.jsx'
 
-import styles from './novoUsuario.module.css'
+import styles from './newUser.module.css'
 
 const formSchema = yup.object().shape({
     nome: yup.string().max(50, 'Maximo de 50 caracteres').required('Nome é obrigatório'),
@@ -33,7 +33,7 @@ const formSchema = yup.object().shape({
     estadoUsuario: yup.string().required('Estado é obrigatório').max(50, 'Maximo de 50 caracteres'),
 })
 
-function NovoUsuario(){
+function NewUser(){
     let dataCep = {}
 
     //Função para mostrar ou ocultar a senha
@@ -197,4 +197,4 @@ function NovoUsuario(){
     )
 }
 
-export default NovoUsuario
+export default NewUser

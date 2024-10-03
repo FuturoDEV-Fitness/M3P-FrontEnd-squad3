@@ -18,20 +18,18 @@ function MyAccount(){
         listUser()
     }, [])
 
-    const id = 4
-
     async function listUser(){        
-        setUser((await useListUserId(id)).data)        
+        setUser((await useListUserId()).data)        
     }
 
     console.log(user)
 
     function editar(){
-        window.location.href = '/editarMinhaConta'
+        window.location.href = '/editarUsuario'
     }
 
     async function deletar(){
-        await useDeleteUser(id)
+        await useDeleteUser()
         logout()
     }
 

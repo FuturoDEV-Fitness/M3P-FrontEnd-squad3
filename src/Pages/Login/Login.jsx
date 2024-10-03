@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 
 import * as yup from 'yup'
@@ -14,6 +14,7 @@ import { ThemeProvider } from '@mui/material/styles'
 import theme from '../../Components/Temas/temaBotao'
 
 import Header from '../../Components/Header/Header'
+import { AuthContext } from '../../Context/AuthContext'
 
 import styles from './login.module.css'
 
@@ -35,8 +36,11 @@ function Login() {
         resolver: yupResolver(formSchema)
     })
 
+    const { login } = useContext(AuthContext)
+
     async function formLogin(formValue){
-        console.log(formValue)
+        await login(formValue)
+        window.location.href = '/'
     }
 
     return (
