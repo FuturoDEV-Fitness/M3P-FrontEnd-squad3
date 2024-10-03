@@ -15,7 +15,7 @@ async function useCep(cep){
         console.log(error)
     }
 
-    return { data}    
+    return { data }    
 }
 
 export default useCep

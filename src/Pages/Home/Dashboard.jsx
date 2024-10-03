@@ -9,6 +9,7 @@ function Dashboard(){
         <div>
             <Header>
                 <Link to='/login'>Login</Link>
+                <Link to='/minhaConta'>Minha conta</Link>
                 <Link to='/novoUsuario'>Cadastrar</Link>
             </Header>
 

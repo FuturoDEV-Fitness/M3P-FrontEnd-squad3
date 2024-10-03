@@ -4,7 +4,8 @@ import App from '../App.jsx';
 import Dashboard from '../Pages/Home/Dashboard.jsx';
 import Login from '../Pages/Login/Login.jsx';
 import NovoUsuario from '../Pages/Cadastro/NovoUsuario.jsx';
-import ListUsers from '../Pages/ListUsers/ListUsers.jsx';
+import MyAccount from '../Pages/MyAccount/MyAccount.jsx';
+import EditUser from '../Pages/EditUser/EditUser.jsx';
 
 import ListPlace from '../Pages/ListPlaces/ListPlaces.jsx';
 
@@ -31,7 +32,11 @@ const routers = createBrowserRouter([
             },
             {
                 path: "/minhaConta",
-                element: <ListUsers />
+                element: <MyAccount />
+            },
+            {
+                path: "/editarMinhaConta",
+                element: <EditUser />
             }
         ]
     }

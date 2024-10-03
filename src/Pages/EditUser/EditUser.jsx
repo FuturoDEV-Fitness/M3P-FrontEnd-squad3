@@ -1,6 +1,8 @@
 import { useForm } from 'react-hook-form'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+
+import axios from 'axios'
 
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -15,25 +17,60 @@ import { ThemeProvider } from '@mui/material/styles'
 import Header from '../../Components/Header/Header.jsx'
 
 import useCep from '../../Hooks/useCep.jsx'
-import { useCreateUser } from '../../Hooks/useCreate.jsx'
+import { useListUserId } from '../../Hooks/useList';
 
-import styles from './novoUsuario.module.css'
+import styles from './editUser.module.css'
 
 const formSchema = yup.object().shape({
-    nome: yup.string().max(50, 'Maximo de 50 caracteres').required('Nome é obrigatório'),
-    cpf: yup.string().required('CPF é obrigatório').matches(/^[0-9]{11}$/, 'Insira 11 dígitos (somente números').max(11, 'Máximo 11 dígitos (somente números)'),    
+    nome: yup.string().max(50, 'Maximo de 50 caracteres').required('Nome é obrigatório'),   
     email: yup.string().email('Formato de e-mail inválido!').required('E-mail é obrigatório').max(50, 'Maximo de 50 caracteres'),   
-    password: yup.string().required('Senha é obrigatória').min(8, 'Minimo de 8 caracteres').max(16, 'Maximo de 16 caracteres'),
+    password: yup.string(),
     data_nascimento: yup.string().required('Data de nascimento é obrigatória'),
     cep: yup.string().required('CEP é obrigatório').matches(/^[0-9]{8}$/, 'Insira 8 dígitos (somente números)').max(8, 'Máximo 8 dígitos (somente números)'),
-    ruaUsuario: yup.string().required('Rua é obrigatória').max(50, 'Maximo de 50 caracteres'),
-    bairroUsuario: yup.string().required('Bairro é obrigatório').max(50, 'Maximo de 50 caracteres'),
-    numeroUsuario: yup.string().required('Numero é obrigatório'),
-    cidadeUsuario: yup.string().required('Cidade é obrigatória').max(50, 'Maximo de 50 caracteres'),
-    estadoUsuario: yup.string().required('Estado é obrigatório').max(50, 'Maximo de 50 caracteres'),
+    ruaUsuario: yup.string().required('Rua é obrigatória'),
+    bairroUsuario: yup.string().required('Bairro é obrigatório'),
+    numeroUsuario: yup.string().required('Número é obrigatório'),
+    cidadeUsuario: yup.string().required('Cidade é obrigatória'),
+    estadoUsuario: yup.string().required('Estado é obrigatório'),
 })
 
-function NovoUsuario(){
+function EditUser(){
+    useEffect(() => {
+        getUser()
+    }, [])
+    //Ao carregar a página, chama a função para pegar as informações atualizadas conforme o id.
+    
+    const id = 14  //PROVISÓRIO!!!!!!
+
+    const [user, setUser] = useState([])  
+
+    const getUser = async () => {
+        try{
+            let response = await fetch(`http://localhost:3000/usuario/${id}`)
+            let dados = await response.json()
+            setUser(dados)   //passa para localId os valores que encontrar no índice 1 (por exemplo)
+
+            console.log(user)
+
+            setValue("nome", dados.nome)
+            setValue("sexo", dados.sexo)
+            setValue("email", dados.email)      
+            setValue("cep", dados.cep)
+
+            let splitAdress = dados.endereco.split(',')  //endreço é um array de 6 posições!
+            console.log(splitAdress)
+
+            setValue("ruaUsuario", splitAdress[1])
+            setValue("bairroUsuario", splitAdress[2])
+            setValue("numeroUsuario", splitAdress[3])
+            setValue("cidadeUsuario", splitAdress[4])
+            setValue("estadoUsuario", splitAdress[5])
+
+        } catch (error){
+            console.log(error)
+        }
+    }
+
     let dataCep = {}
 
     //Função para mostrar ou ocultar a senha
@@ -51,21 +88,7 @@ function NovoUsuario(){
     })
     
     async function formRegister(formValue){
-        let dataForm = {
-            nome: formValue.nome,          
-            data_nascimento: formValue.data_nascimento,
-            sexo: formValue.sexo,
-            cpf: formValue.cpf,
-            email: formValue.email,
-            cep: formValue.cep,
-            senha: formValue.password,
-
-            endereco: `${formValue.cep}, ${formValue.ruaUsuario}, ${formValue.bairroUsuario}, ${formValue.numeroUsuario}, ${formValue.cidadeUsuario}, ${formValue.estadoUsuario}`,
-            //endereco é uma coluna onde comtém todos os dados de endereço do usuário
-        }
-
-        console.log(dataForm)
-        await useCreateUser(dataForm)
+        console.log(formValue)
     }
 
     //Buscar Cep
@@ -89,7 +112,7 @@ function NovoUsuario(){
             </Header>
 
             <div className={styles.containerNovoUsuario}>
-                <h3>Preencha os campos abaixo para cadastrar-se!</h3>
+                <h3>Altere os campos desejados</h3>
 
                 <form className={styles.formNovoUsuario} onSubmit={handleSubmit(formRegister)}>
                     <label htmlFor="nome">Nome</label>
@@ -104,12 +127,6 @@ function NovoUsuario(){
                         <option value="Masculino">Masculino</option>
                         <option value="Outro">Outro</option>
                     </select>
-
-                    <label htmlFor="cpf">CPF</label>
-                    <input  type="text" placeholder="Informe o CPF (somente dígitos)" name="cpf"
-                        {...register("cpf")}                                                
-                    />
-                    {errors?.cpf && <p className={styles.msgErro}><WarningAmberIcon fontSize="small" sx={{"mr":1}}/>{errors.cpf.message}</p>}
 
                     <label htmlFor="data_nascimento">Data Nascimento</label>
                     <input  type="date" name="data_nascimento" format='DD-MM-YYYY'
@@ -157,7 +174,7 @@ function NovoUsuario(){
                     {errors?.bairroUsuario && <p className={styles.msgErro}><WarningAmberIcon fontSize="small" sx={{"mr":1}}/>{errors.bairroUsuario.message}</p>}
 
                     <label htmlFor="numeroUsuario">Número</label>
-                    <input  type="number" placeholder="Informe o número" min={0}
+                    <input  type="text" placeholder="Informe o número" min={0}
                         {...register("numeroUsuario")}                                                   
                     />
                     {errors?.numeroUsuario && <p className={styles.msgErro}><WarningAmberIcon fontSize="small" sx={{"mr":1}}/>{errors.numeroUsuario.message}</p>}
@@ -187,7 +204,7 @@ function NovoUsuario(){
                                 variant="contained"
                                 color="primary"
                                 sx={{"my":2}}>
-                                    Cadastrar
+                                    Enviar
                             </Button>
                         </ThemeProvider>
                     </div>
@@ -197,4 +214,4 @@ function NovoUsuario(){
     )
 }
 
-export default NovoUsuario
+export default EditUser

@@ -99,7 +99,7 @@ function ListPlaces(){
                                 <p className={styles.bairro}>Bairro: {item.bairroLocal}</p>
                                 <p className={styles.num}>Número: {item.numeroLocal}</p>
                                 <p className={styles.compl}>Complemento: {item.complementoLocal}</p>
-                                <p className={styles.link}>GoogleMaps: {item.link}</p>
+                                <p className={styles.link}>GoogleMaps:  {item.link}</p>
                             </div>
                         </div>
 
