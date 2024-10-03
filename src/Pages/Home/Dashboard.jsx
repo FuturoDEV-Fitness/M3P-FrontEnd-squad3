@@ -8,9 +8,10 @@ function Dashboard(){
     return(
         <div>
             <Header>
+                <Link to='/novoLocal'>Novo local</Link>
                 <Link to='/login'>Login</Link>
-                <Link to='/minhaConta'>Minha conta</Link>
-                <Link to='/novoUsuario'>Cadastrar</Link>
+                <Link to='/novoUsuario'>Criar conta</Link>
+                <Link to='/minhaConta'>Minha conta</Link>                
             </Header>
 
             <div className={styles.logo} >

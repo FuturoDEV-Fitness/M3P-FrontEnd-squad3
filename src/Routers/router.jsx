@@ -9,6 +9,8 @@ import NewUser from '../Pages/RegisterUser/NewUser.jsx';
 import MyAccount from '../Pages/MyAccount/MyAccount.jsx';
 import EditUser from '../Pages/EditUser/EditUser.jsx';
 
+import NewLocation from '../Pages/RegisterLocation/NewLocation.jsx';
+
 import { AuthContext } from '../Context/AuthContext.jsx';
 
 // const PrivateRoute = ({ children}) => {
@@ -34,6 +36,7 @@ const routers = createBrowserRouter([
         path: "/novoUsuario",
         element: <NewUser />
     },
+
     {
         path: '/',
         element: (<PrivateRoute> <App /> </PrivateRoute>),
@@ -45,6 +48,10 @@ const routers = createBrowserRouter([
             {
                 path: "/editarUsuario",
                 element: <EditUser />
+            },
+            {
+                path: "/novoLocal",
+                element: <NewLocation />
             }
         ]
     }
