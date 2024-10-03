@@ -11,6 +11,7 @@ import EditUser from '../Pages/EditUser/EditUser.jsx';
 
 import NewLocation from '../Pages/RegisterLocation/NewLocation.jsx';
 import ListLocations from '../Pages/ListLocations/ListLocations.jsx';
+import EditLocation from '../Pages/EditLocation/EditLocation.jsx'
 
 
 import { AuthContext } from '../Context/AuthContext.jsx';
@@ -38,11 +39,7 @@ const routers = createBrowserRouter([
         path: "/novoUsuario",
         element: <NewUser />
     },
-    {
-        path: "/meusLocais",
-        element: <ListLocations />
-    },
-
+    
     {
         path: '/',
         element: (<PrivateRoute> <App /> </PrivateRoute>),
@@ -58,6 +55,14 @@ const routers = createBrowserRouter([
             {
                 path: "/novoLocal",
                 element: <NewLocation />
+            },
+            {
+                path: "/meusLocais",
+                element: <ListLocations />
+            },
+            {
+                path: "/editarLocal/:id",
+                element: <EditLocation />
             }
         ]
     }

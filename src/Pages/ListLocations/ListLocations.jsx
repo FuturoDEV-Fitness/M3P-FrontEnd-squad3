@@ -9,6 +9,7 @@ import Header from '../../Components/Header/Header'
 
 import styles from './listLocations.module.css'
 import { useListLocation } from '../../Hooks/useList';
+import { useDeleteLocation } from '../../Hooks/useDelete';
 function ListLocations(){
 
     ///OBS: PÁGINA EM CONSTRUÇÃO!!!!! 
@@ -23,14 +24,13 @@ function ListLocations(){
         setLocations((await useListLocation()).data)
     }
 
-    function editar(){
-        alert('Editar')
-        alert('editar')
+    function editar(id){
+        window.location.href = `/editarLocal/${id}`
     }
 
-    function deletar(){
-        alert('Deletar')
-        alert('deletar')
+    async function deletar(id){
+        await useDeleteLocation(id)
+        ListLocations()
     }
 
     function logout(){
@@ -80,7 +80,7 @@ function ListLocations(){
 
                             <ThemeProvider theme={theme}>
                                 <Button
-                                onClick={() => editar()}
+                                onClick={() => editar(item.id)}
                                 type="submit"
                                 variant="contained"
                                 color="primary"
@@ -90,7 +90,7 @@ function ListLocations(){
                             </ThemeProvider>
                             <ThemeProvider theme={theme}>
                                 <Button
-                                    onClick={() => deletar()}
+                                    onClick={() => deletar(item.id)}
                                     type="submit"
                                     variant="contained"
                                     color="primary"

@@ -36,7 +36,6 @@ function EditUser(){
     useEffect(() => {
         getUser()
     }, [])
-    //Ao carregar a página, chama a função para pegar as informações atualizadas conforme o id.
     
     const id = localStorage.getItem('userId')
 
@@ -46,7 +45,7 @@ function EditUser(){
         try{
             let response = await fetch(`http://localhost:3000/usuario/${id}`)
             let dados = await response.json()
-            setUser(dados)   //passa para localId os valores que encontrar no índice 1 (por exemplo)
+            setUser(dados) 
 
             console.log(user)
 
