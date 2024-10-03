@@ -2,8 +2,6 @@ import { useForm } from 'react-hook-form'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-import axios from 'axios'
-
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 
@@ -17,7 +15,7 @@ import { ThemeProvider } from '@mui/material/styles'
 import Header from '../../Components/Header/Header.jsx'
 
 import useCep from '../../Hooks/useCep.jsx'
-import { useListUserId } from '../../Hooks/useList';
+import { useEditUser } from '../../Hooks/useEdit.jsx';
 
 import styles from './editUser.module.css'
 
@@ -88,7 +86,24 @@ function EditUser(){
     })
     
     async function formRegister(formValue){
-        console.log(formValue)
+        let dataForm = {
+            nome: formValue.nome,          
+            data_nascimento: formValue.data_nascimento,
+            sexo: formValue.sexo,
+            email: formValue.email,
+            cep: formValue.cep,
+            senha: formValue.password,
+
+            endereco: `${formValue.cep}, ${formValue.ruaUsuario}, ${formValue.bairroUsuario}, ${formValue.numeroUsuario}, ${formValue.cidadeUsuario}, ${formValue.estadoUsuario}`,
+            //endereco é uma coluna onde comtém todos os dados de endereço do usuário
+        }
+
+        console.log(dataForm)
+        await useEditUser(id, dataForm)
+
+        alert('Atualizado com sucesso!')
+
+        window.location.href = '/minhaConta'
     }
 
     //Buscar Cep

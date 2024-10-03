@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import { useListUserId } from '../../Hooks/useList';
+import { useDeleteUser } from '../../Hooks/useDelete';
 
 import { Button } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
@@ -17,8 +18,9 @@ function MyAccount(){
         listUser()
     }, [])
 
-    async function listUser(){
-        const id = 12
+    const id = 4
+
+    async function listUser(){        
         setUser((await useListUserId(id)).data)        
     }
 
@@ -28,12 +30,13 @@ function MyAccount(){
         window.location.href = '/editarMinhaConta'
     }
 
-    function deletar(){
-        alert('Deletar')
-        console.log('deletar')
+    async function deletar(){
+        await useDeleteUser(id)
+        logout()
     }
 
     function logout(){
+        localStorage.clear()
         window.location.href = '/login'
     }
 
