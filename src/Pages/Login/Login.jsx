@@ -47,7 +47,7 @@ function Login() {
         <div>
             <Header>
                 <Link to='/'>Home</Link>
-                <Link to='/novoUsuario'>Cadastrar</Link>
+                <Link to='/novoUsuario'>Criar conta</Link>
             </Header>
 
             <div className={styles.containerLogin}>
@@ -90,7 +90,7 @@ function Login() {
                     </div>
                 </form>
 
-                <p >Não possui uma conta? <Link to="/novoUsuario" className={styles.linkLogin}>Cadastre-se</Link>!</p>
+                <p >Não possui uma conta? <Link to="/novoUsuario" className={styles.linkLogin}>Crie uma conta</Link>!</p>
             </div>
         </div>
     )

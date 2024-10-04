@@ -18,6 +18,21 @@
         width: 260px
     }
 
+    .botaoLogout{
+        background-color: #29B473;
+        font-weight: bold;
+        width: 60px;
+        border: none;
+        border-radius: 4px;
+        padding: 6px 0px;
+        cursor: pointer;
+        margin-left: 1em;
+    }
+    
+    .botaoLogout:hover{
+        background-color: #1c7d50;
+    }
+
     .formCadastroLugar label{
         text-align: left;
         margin-left: 8px;
@@ -88,5 +103,10 @@
     .containerCadastroLugar{
         background-image: linear-gradient(to bottom, #757981,  #d9dce0);
         width: 500px;
+    }
+
+    .botaoLogout{
+        width: 80px;
+        padding: 6px 16px;
     }
 }

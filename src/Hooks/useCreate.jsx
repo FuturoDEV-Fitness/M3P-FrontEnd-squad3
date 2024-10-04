@@ -12,8 +12,13 @@ export const useCreateUser = async(dataUser) => {
 }
 
 export const useCreateLocation = async(dataLocation) => {
+    const token = localStorage.getItem('token')
+    
     try {
-        const response = await axios.post('http://localhost:3000/local', dataLocation)
+        const response = await axios.post('http://localhost:3000/local', dataLocation, {
+            headers: {
+                'Authorization': `Bearer ${token}`}
+        })
 
         console.log(`status: ${response.status}`) //Verificando o status
 

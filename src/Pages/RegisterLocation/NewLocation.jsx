@@ -45,19 +45,6 @@ function NewLocation(){
     })
 
     async function formRegister(formValue){
-        let stringAtividade = ''
-        for(let i = 0; i < formValue.atividades.length; i++){
-            
-            if(i === formValue.atividades.length - 1){
-                stringAtividade += formValue.atividades[i]
-            } else {
-                stringAtividade += formValue.atividades[i] + ', '
-            }
-        }
-
-        if(stringAtividade === ''){
-            stringAtividade = 'Caminhada'
-        } //Caminhada é o valor padrão
 
         let dataForm = {
             nome: formValue.nome,
@@ -65,11 +52,11 @@ function NewLocation(){
             cidade: formValue.cidade,
             estado: formValue.estado,
             descricao: formValue.descricao,
-            atividades: stringAtividade,
+            atividades: formValue.atividades,
             latitude: formValue.latitude,
-            longitude: formValue.longitude,
-            userId: JSON.parse(localStorage.getItem('userId'))
+            longitude: formValue.longitude
         }
+        
         console.log(dataForm)
         await useCreateLocation(dataForm)
     }
@@ -87,10 +74,16 @@ function NewLocation(){
         }
     }
 
+    function logout(){
+        window.location.href = '/login'
+    }
+
     return(
         <div>
             <Header>
                 <Link to='/'>Home</Link>
+                <Link to='/meusLocais'>Listar locais</Link> 
+                <button onClick={() => logout()} className={styles.botaoLogout}>Logout</button>
             </Header>
 
             <div className={styles.containerCadastroLugar}>

@@ -38,12 +38,17 @@ function EditUser(){
     }, [])
     
     const id = localStorage.getItem('userId')
+    const token = localStorage.getItem('token')
 
     const [user, setUser] = useState([])  
 
     const getUser = async () => {
         try{
-            let response = await fetch(`http://localhost:3000/usuario/${id}`)
+            let response = await fetch(`http://localhost:3000/usuario/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
             let dados = await response.json()
             setUser(dados) 
 
@@ -119,10 +124,16 @@ function EditUser(){
         }
     }
 
+    function logout(){
+        window.location.href = '/login'
+    }
+
     return(
         <div>
             <Header>
                 <Link to='/'>Home</Link>
+                <Link to='/minhaConta'>Minha conta</Link>
+                <button onClick={() => logout()} className={styles.botaoLogout}>Logout</button>
             </Header>
 
             <div className={styles.containerNovoUsuario}>

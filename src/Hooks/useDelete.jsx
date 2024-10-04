@@ -5,7 +5,11 @@ export const useDeleteUser = async() => {
     const id = localStorage.getItem('userId')
     
     try {
-        const response = await axios.delete(`http://localhost:3000/usuario/${id}`)
+        const response = await axios.delete(`http://localhost:3000/usuario/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
 
         console.log(`status: ${response.status}`) //Verificando o status
 
@@ -18,7 +22,11 @@ export const useDeleteLocation = async(id) => {
     const token = localStorage.getItem('token')
     
     try {
-        const response = await axios.delete(`http://localhost:3000/local/${id}`)
+        const response = await axios.delete(`http://localhost:3000/local/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
 
         console.log(`status: ${response.status}`) //Verificando o status
 

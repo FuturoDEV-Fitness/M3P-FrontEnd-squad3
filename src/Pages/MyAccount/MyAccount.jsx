@@ -42,6 +42,8 @@ function MyAccount(){
         <div>
             <Header>
                 {<Link to='/'>Home</Link>}
+                <Link to='/novoLocal'>Novo local</Link>
+                <Link to='/meusLocais'>Meus locais</Link>
                 <button onClick={() => logout()} className={styles.botaoLogout}>Logout</button>
             </Header>
 

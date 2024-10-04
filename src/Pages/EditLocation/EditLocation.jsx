@@ -12,7 +12,7 @@ import { ThemeProvider } from '@mui/material/styles'
 
 import Header from '../../Components/Header/Header.jsx'
 import useCep from '../../Hooks/useCep.jsx'
-import { useCreateLocation } from '../../Hooks/useCreate.jsx'
+import { useEditLocation } from '../../Hooks/useEdit.jsx';
 
 import styles from'./editLocation.module.css'
 
@@ -31,15 +31,41 @@ const formSchema = yup.object().shape({
     atividades: yup.array().required('Selecione ao menos uma atividade')
 })
 function EditLocation(){
-    let dataCep = {}
-
     useEffect(() => {
         getLocation()
     }, [])
 
     const {id} = useParams() //pega o id na url
+    const token = localStorage.getItem('token')
 
     const [location, setLocation] = useState([])
+
+
+    const getLocation = async() => {        
+        try {
+            let response = await fetch(`http://localhost:3000/local/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            let dados = await response.json()
+            setLocation(dados)
+
+            console.log(location)
+
+            setValue("nome", dados.nomeLocal)
+            setValue("latitude", dados.latitude)
+            setValue("longitude", dados.longitude)
+            setValue("cep", dados.cepLocal)
+            setValue("descricao", dados.descricao)
+            setValue("atividades", dados.tipoAtividade)
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    let dataCep = {}
 
     const {
         register,
@@ -51,23 +77,14 @@ function EditLocation(){
         resolver: yupResolver(formSchema)
     })
 
-    const getLocation = async() => {
-        try {
-            let response = await fetch(`http://localhost:3000/local/${id}`)
-            let dados = await response.json()
-            setLocation(dados)
-
-            console.log(location)
-
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     async function formRegister(formValue){
         console.log(formValue)
-    }
+        await useEditLocation(id, formValue)
 
+        alert('Atualizado com sucesso!')
+
+        window.location.href = '/meusLocais'
+    }
 
     const findCep = async () => {
         let cep = getValues('cep')
@@ -82,10 +99,16 @@ function EditLocation(){
         }
     }
 
+    function logout(){
+        window.location.href = '/login'
+    }
+
     return(
         <div>
             <Header>
                 <Link to='/'>Home</Link>
+                <Link to='/meusLocais'>Listar locais</Link>
+                <button onClick={() => logout()} className={styles.botaoLogout}>Logout</button>
             </Header>
 
             <div className={styles.containerCadastroLugar}>

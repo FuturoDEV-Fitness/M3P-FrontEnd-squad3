@@ -5,14 +5,20 @@ import Map from '../../Components/Map/Map'
 import Header from '../../Components/Header/Header'
 import styles from './dashboard.module.css'
 function Dashboard(){
+    function logout(){
+        window.location.href = '/login'
+    }
+
     return(
         <div>
             <Header>
-                <Link to='/meusLocais'>Listar locais</Link>
-                <Link to='/novoLocal'>Novo local</Link>
                 <Link to='/login'>Login</Link>
+                <Link to='/minhaConta'>Minha conta</Link>
+                <Link to='/novoLocal'>Novo local</Link>
+                <Link to='/meusLocais'>Listar locais</Link>               
                 <Link to='/novoUsuario'>Criar conta</Link>
-                <Link to='/minhaConta'>Minha conta</Link>                
+                <button onClick={() => logout()} className={styles.botaoLogout}>Logout</button>
+
             </Header>
 
             <div className={styles.logo} >

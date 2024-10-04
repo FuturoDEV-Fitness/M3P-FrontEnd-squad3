@@ -8,7 +8,11 @@ export const useListUserId = async() => {
     let data
 
     try {
-        const response = await axios.get(`http://localhost:3000/usuario/${id}`)	
+        const response = await axios.get(`http://localhost:3000/usuario/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })	
 
         data = response.data
 
@@ -21,14 +25,18 @@ export const useListUserId = async() => {
     return { data }
 }
 
-export const useListLocation = async() => {
+export const useListAllLocation = async() => {
+    //Todos os locais do usuário que está logado no sistema
     const token = localStorage.getItem('token')
-    const id = localStorage.getItem('userId')
 
     let data
 
     try {
-        const response = await axios.get(`http://localhost:3000/local/${id}`)	
+        const response = await axios.get('http://localhost:3000/local', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })	
 
         data = response.data
 

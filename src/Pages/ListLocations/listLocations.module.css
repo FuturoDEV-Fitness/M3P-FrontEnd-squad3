@@ -5,6 +5,12 @@
         padding: 1em;
     }
 
+    .testep {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
     .botaoLogout{
         background-color: #29B473;
         font-weight: bold;
