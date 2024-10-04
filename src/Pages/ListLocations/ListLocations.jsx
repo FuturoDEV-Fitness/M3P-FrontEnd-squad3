@@ -17,11 +17,11 @@ function ListLocations(){
 
     const [locations, setLocations] = useState([])
 
+    let teste = []
+
     useEffect(() => {
         ListLocations()
     }, [])
-
-    console.log(locations)
 
     async function ListLocations(){
         setLocations((await useListAllLocation()).data)

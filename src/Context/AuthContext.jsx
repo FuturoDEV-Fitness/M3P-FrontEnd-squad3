@@ -55,6 +55,7 @@ export const AuthContextProvider = ({ children }) => {
                 userId: userId,
                 userName: userName
             })
+            localStorage.setItem('isLogged', true)
 
             try{
                 //tenta decodificar o token

@@ -4,6 +4,7 @@ import {useEffect, useState} from 'react'
 import Map from '../../Components/Map/Map'
 
 import {useListAllUser} from '../../Hooks/useList'
+import { useListAll } from '../../Hooks/useList'
 
 import Header from '../../Components/Header/Header'
 import styles from './dashboard.module.css'
@@ -11,20 +12,33 @@ function Dashboard(){
     const navigate = useNavigate()
 
     const [users, setUsers] = useState([])
+    const [locations, setLocations] = useState([])
     function logout(){
         localStorage.clear()
         navigate("/login")
     }
 
     useEffect(() => {
-        listUser()
+        //listUser()
+        //listLocations()
+        listAll()
     }, [])
 
     async function listUser(){
         setUsers((await useListAllUser()).data)
     }
 
+    async function listLocations(){
+        setLocations((await useListAll()).data)
+    }
+
+    async function listAll(){
+        setUsers((await useListAllUser()).data)
+        setLocations((await useListAll()).data)
+    }
+
     const numUsers = users.length
+    const numLocations = locations.length
     
     //Lógica para mostrar quantos usuarios estão ativos no momento
     // const ativos = usuarios.filter(value =>{
@@ -54,7 +68,7 @@ function Dashboard(){
             <div className={styles.divTexto}>
                 <h2>Venha contribuir você também!!</h2>
                 <h3>Atualmente, somos {numUsers} usuários cadastrados. Dos quais, {numUsers} estão ativos nesse momento!</h3>
-                <h3>Contamos com {numUsers} locais cadastrados!</h3>
+                <h3>Contamos com {numLocations} locais cadastrados!</h3>
                 <p style={{marginTop: "1em"}}>
                     <Link to={'/novoLocal'} className={styles.link}>Cadastrar Novo Local!</Link>
                 </p>

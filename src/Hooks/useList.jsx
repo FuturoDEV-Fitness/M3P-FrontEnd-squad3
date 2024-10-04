@@ -69,3 +69,19 @@ export const useListAllLocation = async() => {
 
     return { data }
 }
+
+export const useListAll = async() => {
+    let data
+    try {
+        const response = await axios.get('http://localhost:3000/local/getall')	
+
+        data = response.data
+
+        console.log(`status: ${response.status}`)
+
+    } catch (error) {
+        console.log(error)
+    }
+
+    return { data }
+}
