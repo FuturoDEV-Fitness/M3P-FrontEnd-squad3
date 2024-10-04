@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -24,6 +24,8 @@ const formSchema = yup.object().shape({
 })
 
 function Login() {
+    const navigate = useNavigate()
+
     //Função para mostrar ou ocultar a senha
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -40,7 +42,7 @@ function Login() {
 
     async function formLogin(formValue){
         await login(formValue)
-        window.location.href = '/'
+        navigate('/')
     }
 
     return (

@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -36,6 +36,8 @@ function EditUser(){
     useEffect(() => {
         getUser()
     }, [])
+
+    const navigate = useNavigate()
     
     const id = localStorage.getItem('userId')
     const token = localStorage.getItem('token')
@@ -107,7 +109,7 @@ function EditUser(){
 
         alert('Atualizado com sucesso!')
 
-        window.location.href = '/minhaConta'
+        navigate("/minhaConta")
     }
 
     //Buscar Cep
@@ -125,7 +127,8 @@ function EditUser(){
     }
 
     function logout(){
-        window.location.href = '/login'
+        localStorage.clear()
+        navigate("/login")
     }
 
     return(

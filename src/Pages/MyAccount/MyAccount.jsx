@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import { useListUserId } from '../../Hooks/useList';
 import { useDeleteUser } from '../../Hooks/useDelete';
+import { useListAllLocation } from '../../Hooks/useList';
 
 import { Button } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
@@ -13,19 +14,29 @@ import Header from '../../Components/Header/Header';
 import styles from './myAccount.module.css';
 function MyAccount(){
     const [user, setUser] = useState({});
+    const [locations, setLocations] = useState([])
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         listUser()
+        ListLocations()
     }, [])
+
+    async function ListLocations(){
+        setLocations((await useListAllLocation()).data)
+    }
 
     async function listUser(){        
         setUser((await useListUserId()).data)        
     }
 
     console.log(user)
+    console.log(locations)
+    const numLocations = locations.length
 
     function editar(){
-        window.location.href = '/editarUsuario'
+        navigate('/editarUsuario')
     }
 
     async function deletar(){
@@ -35,7 +46,7 @@ function MyAccount(){
 
     function logout(){
         localStorage.clear()
-        window.location.href = '/login'
+        navigate('/login')
     }
 
     return(
@@ -57,11 +68,14 @@ function MyAccount(){
 
                 <div className={styles.divConteudo}>
 
-                    <p>Nome: {user.nome}</p>
-                    <p>Email: {user.email}</p>
-                    <p>Você possui X locais cadastrados:</p>
-                    <p>Local 1</p>
-                    <p>Local 2</p>
+                    <p className={styles.descricao}>Nome: {user.nome}</p>
+                    <p className={styles.descricao}>Email: {user.email}</p>
+
+                    {numLocations > 0 ? <p className={styles.descricao}>Você possui  {numLocations} locais cadastrados:</p> : <p className={styles.descricao}>Você ainda não possui locais cadastrados!</p>}
+                    
+                    {locations ? locations.map(location => (
+                        <p key={location.id} className={styles.descricao}>{location.nomeLocal} - {location.cidade}/{location.estado}</p>
+                    )) : <p></p>}
 
 
                     <div className={styles.divBotoes}>
@@ -90,7 +104,7 @@ function MyAccount(){
                 </div>
             </Card>
 
-            <p style={{color: 'red'}}>Em algum lugar avisar que ao excluir a conta , todos os locais cadastrados por esse usuário serão deletados.</p>
+            <p className={styles.atencao}><span style={{color: 'red'}}>ATENÇÃO</span>: Ao clicar em excluir conta, todos os locais cadastrado por você serão excluídos!</p>
 
         </div>
     )

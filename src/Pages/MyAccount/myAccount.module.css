@@ -37,6 +37,7 @@
 
     .divConteudo{
         padding-left: 1em;
+        margin-top: 1em;
     }
 
     .divConteudo li{
@@ -88,8 +89,12 @@
     }
     
     .descricao{
-        text-align: center;
         margin: 1em 0;
+    }
+
+    .atencao{
+        text-align: center;
+        font-size: 1.2em;
     }
 }
 

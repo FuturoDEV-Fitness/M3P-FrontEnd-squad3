@@ -1,13 +1,35 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import {useEffect, useState} from 'react'
 
 import Map from '../../Components/Map/Map'
+
+import {useListAllUser} from '../../Hooks/useList'
 
 import Header from '../../Components/Header/Header'
 import styles from './dashboard.module.css'
 function Dashboard(){
+    const navigate = useNavigate()
+
+    const [users, setUsers] = useState([])
     function logout(){
-        window.location.href = '/login'
+        localStorage.clear()
+        navigate("/login")
     }
+
+    useEffect(() => {
+        listUser()
+    }, [])
+
+    async function listUser(){
+        setUsers((await useListAllUser()).data)
+    }
+
+    const numUsers = users.length
+    
+    //Lógica para mostrar quantos usuarios estão ativos no momento
+    // const ativos = usuarios.filter(value =>{
+    //     return value.usuarioAtivo == true
+    // })
 
     return(
         <div>
@@ -28,6 +50,40 @@ function Dashboard(){
             <h1 className={styles.textoInicial}>Aqui você pode encontrar e compartilhar dicas de locais para prática de alguma atividade física!</h1>
 
             <Map />
+
+            <div className={styles.divTexto}>
+                <h2>Venha contribuir você também!!</h2>
+                <h3>Atualmente, somos {numUsers} usuários cadastrados. Dos quais, {numUsers} estão ativos nesse momento!</h3>
+                <h3>Contamos com {numUsers} locais cadastrados!</h3>
+                <p style={{marginTop: "1em"}}>
+                    <Link to={'/novoLocal'} className={styles.link}>Cadastrar Novo Local!</Link>
+                </p>
+            </div>
+
+            <h1 className={styles.texth1}><span style={{color: "var(--verdeLogo)" }}><em>Exercite</em></span> essa ideia e junte-se aos nossos usuarios!</h1>
+
+            {/* <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Cidade/UF</th>
+                    </tr>
+                </thead>
+
+                <tbody> 
+                    {users ? users.map(user => (
+                        <tr key={user.id}>
+                            <td>{user.nome}</td>
+                            <td>{user.cidade}/{user.estado}</td>
+                        </tr>
+                    )) : 
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    }
+                </tbody>     
+            </table> */}
         </div>
     )
 }

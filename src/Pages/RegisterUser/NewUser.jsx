@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -36,6 +36,8 @@ const formSchema = yup.object().shape({
 function NewUser(){
     let dataCep = {}
 
+    const navigate = useNavigate()
+
     //Função para mostrar ou ocultar a senha
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -66,6 +68,9 @@ function NewUser(){
 
         console.log(dataForm)
         await useCreateUser(dataForm)
+
+        alert('Usuário criado com sucesso!')
+        navigate('/login')
     }
 
     //Buscar Cep

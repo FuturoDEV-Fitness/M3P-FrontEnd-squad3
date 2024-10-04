@@ -55,6 +55,22 @@
         margin-top: 1em;
     }
 
+    .divLink{
+        display: flex;
+        align-items: center;
+    }
+
+    .link{
+        text-decoration: none;
+        text-align: center;
+        margin-left: 10px;
+    }
+
+    .link:hover{
+        text-decoration: underline var(--verdeLogo) 2px;
+    }
+
+
     .divBotoes{
         text-align: center;
         margin: auto;
@@ -68,7 +84,6 @@
         grid-template-areas: "rua rua"
                              "cep bairro"
                              "num compl"
-                             "link link";
     }
     
     .rua{
@@ -89,10 +104,14 @@
     .compl{
         grid-area: compl;
     }
-    .link{
-        grid-area: link;
+
+    .divLink{
+        display: flex;
+        margin: auto;
+        text-align: center;
     }
-    
+
+
     .descricao{
         text-align: center;
         margin: 1em 0;

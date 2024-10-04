@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -34,6 +34,8 @@ function EditLocation(){
     useEffect(() => {
         getLocation()
     }, [])
+
+    const navigate = useNavigate()
 
     const {id} = useParams() //pega o id na url
     const token = localStorage.getItem('token')
@@ -83,7 +85,7 @@ function EditLocation(){
 
         alert('Atualizado com sucesso!')
 
-        window.location.href = '/meusLocais'
+        navigate("/meusLocais")
     }
 
     const findCep = async () => {
@@ -100,7 +102,8 @@ function EditLocation(){
     }
 
     function logout(){
-        window.location.href = '/login'
+        localStorage.clear()
+        navigate("/login")
     }
 
     return(

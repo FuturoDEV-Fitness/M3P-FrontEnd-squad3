@@ -73,6 +73,11 @@
     .botaoLogout:hover{
         background-color: #1c7d50;
     }
+
+    .texth1{
+        text-align: center;
+        margin-bottom: 20px;
+    }
 }
     
 @media (min-width: 769px) {

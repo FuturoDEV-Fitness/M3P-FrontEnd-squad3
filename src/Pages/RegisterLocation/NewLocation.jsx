@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -34,6 +34,8 @@ const formSchema = yup.object().shape({
 function NewLocation(){
     let dataCep = {}
 
+    const navigate = useNavigate()
+
     const {
         register,
         handleSubmit,
@@ -59,6 +61,9 @@ function NewLocation(){
         
         console.log(dataForm)
         await useCreateLocation(dataForm)
+
+        alert('Local criado com sucesso!')
+        navigate('/meusLocais')
     }
 
     const findCep = async () => {
@@ -75,7 +80,8 @@ function NewLocation(){
     }
 
     function logout(){
-        window.location.href = '/login'
+        localStorage.clear()
+        navigate('/login')
     }
 
     return(

@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Link, Navigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button } from '@mui/material'
 import { ThemeProvider } from '@mui/material/styles'
 import theme from '../../Components/Temas/temaBotao'
+import LinkIcon from '@mui/icons-material/Link';
 
 import Card from '../../Components/Card/Card'
 import Header from '../../Components/Header/Header'
@@ -12,7 +13,7 @@ import { useListAllLocation } from '../../Hooks/useList';
 import { useDeleteLocation } from '../../Hooks/useDelete';
 function ListLocations(){
 
-    ///OBS: PÁGINA EM CONSTRUÇÃO!!!!! 
+    const navigate = useNavigate()
 
     const [locations, setLocations] = useState([])
 
@@ -27,7 +28,7 @@ function ListLocations(){
     }
 
     function editar(id){
-        window.location.href = `/editarLocal/${id}`
+        navigate(`/editarLocal/${id}`)
     }
 
     async function deletar(id){
@@ -36,7 +37,8 @@ function ListLocations(){
     }
 
     function logout(){
-        window.location.href = '/login'
+        localStorage.clear()
+        navigate("/login")
     }
 
     let string = "Alongamento, Caminhada, Yoga"
@@ -56,7 +58,7 @@ function ListLocations(){
                     <div className={styles.divTitulo}>
                         <h3>{item.nomeLocal}</h3>
                         <p>{item.cidade}/{item.estado}</p>
-                        {<p>Por: {item.usuario.nome}</p>}
+                        {<p>Usuário: {item.usuario.nome}</p>}
                     </div>
 
                     <hr />
@@ -83,7 +85,11 @@ function ListLocations(){
                                 <p className={styles.bairro}>Bairro: {item.bairroLocal}</p>
                                 <p className={styles.num}>Número: {item.numeroLocal}</p>
                                 <p className={styles.compl}>Complemento: {item.complementoLocal}</p>
-                                <p className={styles.link}>GoogleMaps:  {item.link}</p>
+
+                                <div className={styles.divLink}>
+                                    < LinkIcon  fontSize='medium'/>                                    
+                                    <Link to={item.linkGoogleMaps} target='_blank' className={styles.link}>Abrir com Google Maps</Link>
+                                </div>
                             </div>
                         </div>
 
