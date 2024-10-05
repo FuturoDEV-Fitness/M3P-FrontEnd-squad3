@@ -1,87 +1,90 @@
-import axios from 'axios'
-import { useState } from 'react'
+import axios from "axios";
 
-export const useListUserId = async() => {
-    const token = localStorage.getItem('token')
-    const id = localStorage.getItem('userId')
+export const useListUserId = async () => {
+  const token = localStorage.getItem("token");
+  const id = localStorage.getItem("userId");
 
-    let data
+  let data;
 
-    try {
-        const response = await axios.get(`http://localhost:3000/usuario/${id}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })	
+  try {
+    const response = await axios.get(`http://localhost:3000/usuarios/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-        data = response.data
+    data = response.data;
 
-        console.log(`status: ${response.status}`)
+    console.log(`status: ${response.status}`);
+  } catch (error) {
+    console.log(error);
+  }
 
-    } catch (error) {
-        console.log(error)
-    }
+  return { data };
+};
 
-    return { data }
-}
+export const useListAllUser = async () => {
+  const token = localStorage.getItem("token");
+  let data;
+  try {
+    const response = await axios.get(
+      "http://localhost:3000/autentic/listarTodosUsu",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
-export const useListAllUser = async() => {
-    const token = localStorage.getItem('token')
-    let data
-    try {
-        const response = await axios.get('http://localhost:3000/usuario', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })	
+    data = response.data;
 
-        data = response.data
+    console.log(`status: ${response.status}`);
+  } catch (error) {
+    console.log(error);
+  }
 
-        console.log(`status: ${response.status}`)
+  return { data };
+};
 
-    } catch (error) {
-        console.log(error)
-    }
+export const useListAllLocation = async () => {
+  //Todos os locais do usuário que está logado no sistema
+  const token = localStorage.getItem("token");
 
-    return { data }
-}
+  let data;
 
-export const useListAllLocation = async() => {
-    //Todos os locais do usuário que está logado no sistema
-    const token = localStorage.getItem('token')
+  try {
+    const response = await axios.get(
+      "http://localhost:3000/locais/seus-locais",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
-    let data
+    data = response.data;
 
-    try {
-        const response = await axios.get('http://localhost:3000/local', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })	
+    console.log(`status: ${response.status}`);
+  } catch (error) {
+    console.log(error);
+  }
 
-        data = response.data
+  return { data };
+};
 
-        console.log(`status: ${response.status}`)
+export const useListAll = async () => {
+  let data;
+  try {
+    const response = await axios.get(
+      "http://localhost:3000/locais-publi/getAll"
+    );
 
-    } catch (error) {
-        console.log(error)
-    }
+    data = response.data;
 
-    return { data }
-}
+    console.log(`status: ${response.status}`);
+  } catch (error) {
+    console.log(error);
+  }
 
-export const useListAll = async() => {
-    let data
-    try {
-        const response = await axios.get('http://localhost:3000/local/getall')	
-
-        data = response.data
-
-        console.log(`status: ${response.status}`)
-
-    } catch (error) {
-        console.log(error)
-    }
-
-    return { data }
-}
+  return { data };
+};
