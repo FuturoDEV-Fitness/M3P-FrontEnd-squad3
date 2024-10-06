@@ -1,6 +1,6 @@
+import LinkIcon from "@mui/icons-material/Link";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import LinkIcon from "@mui/icons-material/Link";
 
 import Map from "../../Components/Map/Map";
 
@@ -15,27 +15,26 @@ function Dashboard() {
 
   const [users, setUsers] = useState([]);
   const [locations, setLocations] = useState([]);
-  function logout() {
-    localStorage.clear();
-    navigate("/login");
-  }
+  // function logout() {
+  //   localStorage.clear();
+  //   navigate("/login");
+  // }
 
   useEffect(() => {
     listAll();
   }, []);
 
-  let teste = ''
+  let teste = "";
   for (let i = 0; i < locations.length; i++) {
     if (i === locations.length - 1) {
-      teste += locations[i].itens_checkbox
+      teste += locations[i].itens_checkbox;
     } else {
-      teste += `${locations[i].itens_checkbox},` 
-    }    
+      teste += `${locations[i].itens_checkbox},`;
+    }
   }
 
-  let teste2 = teste.split(",")
-  console.log(teste2)
-
+  let teste2 = teste.split(",");
+  console.log(teste2);
 
   async function listAll() {
     setUsers((await useListAllUser()).data);
@@ -44,6 +43,11 @@ function Dashboard() {
 
   const numUsers = users.length;
   const numLocations = locations.length;
+
+  async function logout() {
+    localStorage.clear();
+    navigate("/login");
+  }
 
   return (
     <div>
@@ -84,10 +88,10 @@ function Dashboard() {
       </div>
 
       <h1 className={styles.texth1}>
-        Esses são os locais cadastrados no  
+        Esses são os locais cadastrados no
         <span style={{ color: "var(--verdeLogo)" }}>
           <em> BuscaFit</em>
-        </span>{" "}        
+        </span>{" "}
       </h1>
 
       {locations.length > 0 ? (
@@ -110,9 +114,13 @@ function Dashboard() {
               </p>
 
               <ul type={"circle"}>
-                {teste2.length > 0 ? teste2.map((atividade, index) => (
-                  <li key={index}>{atividade}</li>
-                )) : <li>Caminhada</li>}
+                {teste2.length > 0 ? (
+                  teste2.map((atividade, index) => (
+                    <li key={index}>{atividade}</li>
+                  ))
+                ) : (
+                  <li>Caminhada</li>
+                )}
                 {/* Se o usuário não marcar nada, vou exibir Caminhada */}
               </ul>
 
@@ -133,23 +141,24 @@ function Dashboard() {
 
                   <div className={styles.divLink}>
                     <LinkIcon fontSize="medium" />
-                    <Link to={item.linkMap}
+                    <Link
+                      to={item.linkMap}
                       target="_blank"
                       className={styles.linkMap}
                     >
-                        Abrir com Google Maps
+                      Abrir com Google Maps
                     </Link>
-                  </div>    
+                  </div>
                 </div>
               </div>
             </div>
           </Card>
         ))
-      ): (
+      ) : (
         <Card>
           <p>Sem dados para mostrar</p>
         </Card>
-      )} 
+      )}
     </div>
   );
 }

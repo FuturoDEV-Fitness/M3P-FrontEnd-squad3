@@ -135,7 +135,7 @@ function EditUser() {
     }
   };
 
-  function logout() {
+  async function logout() {
     localStorage.clear();
     navigate("/login");
   }
