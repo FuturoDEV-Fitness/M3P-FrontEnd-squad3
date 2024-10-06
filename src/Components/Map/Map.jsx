@@ -36,11 +36,15 @@ function Map(){
             />
 
             <MarkerClusterGroup>                
-                {markers.length > 0 ? markers.map((marker, index) => (
+                {markers ? markers.map((marker, index) => (
                     <Marker position={[marker.lat, marker.long]} key={index}>
                         <Popup>{marker.popUp}</Popup>
                     </Marker>
-                )): null}
+                )): 
+                    <Marker position={[-27.59344, -48.56159]} >
+                        <Popup>{'Local fixo'}</Popup>
+                    </Marker>
+                }
             </MarkerClusterGroup>
         </MapContainer>
     )

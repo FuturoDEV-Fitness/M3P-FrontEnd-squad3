@@ -18,22 +18,83 @@
         margin-bottom: 1em;
     }
 
-    table{
-        width: 80vw;
-        margin: 1em auto;
-        border-collapse: collapse;
-    }
-    
-    th, td{
-        border: 1px solid black;
-        padding: 6px 0;
-        text-align: center;
-        vertical-align: middle;
-    }
-    
-    thead{
+    .divTitulo{
         background-color: var(--verdeLogo);
+        border-radius: 20px 20px 0 0;
+        padding: 1em;
     }
+
+    .divTitulo p:last-child{
+        text-align: right;
+        font-weight: bold;
+    }
+
+    .divConteudo{
+        padding-left: 1em;
+    }
+
+    .descricao{
+        text-align: left;
+        margin: 1em 0;
+    }
+
+    .divLink{
+        display: flex;
+        margin: auto;
+        text-align: center;
+    }
+
+    .linkMap{
+        text-decoration: none;
+        text-align: center;
+        margin-left: 10px;
+    }
+
+    .linkMap:hover{
+        text-decoration: underline var(--verdeLogo) 2px;
+    }
+
+    .divConteudo li{
+        margin-left: 2em;    
+    }
+
+    .divFlex{
+        display: flex;
+        align-items: center;
+        margin-top: 1em;
+    }
+
+    .divGrid{
+        display: grid;
+        column-gap: 2em;
+        row-gap: 0.4em;
+    
+        grid-template-areas: "rua rua"
+                             "bairro bairro"
+                             "cep num"
+                             "compl compl"
+    }
+    
+    .rua{
+        grid-area: rua;
+    }
+    .cep{
+        grid-area: cep;
+    }
+    .bairro{
+        grid-area: bairro;
+    }
+    .num{
+        grid-area: num;
+    }
+    .rua{
+        grid-area: rua;
+    }
+    .compl{
+        grid-area: compl;
+    }
+    
+
 
     .divTexto{
         background-color: #b1b5b9;

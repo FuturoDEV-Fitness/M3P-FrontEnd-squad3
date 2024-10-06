@@ -13,7 +13,7 @@ function Header(props){
         <header className={styles.header}>
             <div className={styles.headerLogo}>
                 <img src="/logo.png" alt="Logo do sistema" width={'40px'} />
-                <h2>Exercite</h2>
+                <h2>BuscaFit</h2>
             </div>
             <nav className={styles.navbar}>
                 {props.children}

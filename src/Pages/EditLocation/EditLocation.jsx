@@ -68,17 +68,23 @@ function EditLocation() {
           Authorization: `Bearer ${token}`,
         },
       });
+      
       let dados = await response.json();
+
+      console.log('O que veio na requisição:')
+      console.log( dados);
+
       setLocation(dados);
 
-      console.log(location);
+      ////Lógica do checkBox
+      let arrayCheckbox = dados.itens_checkbox.split(",")
 
       setValue("nome", dados.nomeLocal);
       setValue("latitude", dados.latitude);
       setValue("longitude", dados.longitude);
       setValue("cep", dados.cep_endereco);
       setValue("descricao", dados.descricao);
-      setValue("atividades", dados.itens_checkbox);
+      setValue("atividades", arrayCheckbox);
       setValue("rua", dados.rua);
       setValue("bairro", dados.bairro);
       setValue("complemento", dados.complemento);
@@ -103,7 +109,8 @@ function EditLocation() {
   });
 
   async function formRegister(formValue) {
-    let stringAtividade = "";
+    //Lógica para salvar as atividades no banco em forma de string
+    let stringAtividade = ""
     for (let i = 0; i < formValue.atividades.length; i++) {
       if (i === formValue.atividades.length - 1) {
         stringAtividade += formValue.atividades[i];
@@ -111,6 +118,7 @@ function EditLocation() {
         stringAtividade += `${formValue.atividades[i]},`;
       }
     }
+
     let dataForm = {
       nomeLocal: formValue.nome,
       descricao: formValue.descricao,
@@ -125,12 +133,13 @@ function EditLocation() {
       latitude: formValue.latitude,
       longitude: formValue.longitude,
     };
+
+    console.log('Dados que serão enviados para o banco: ')
     console.log(dataForm);
-    await useEditLocation(id, dataForm);
 
-    alert("Atualizado com sucesso!");
+    await useEditLocation(id, dataForm)
 
-    // navigate("/meusLocais");
+    navigate("/meusLocais");
   }
 
   const findCep = async () => {

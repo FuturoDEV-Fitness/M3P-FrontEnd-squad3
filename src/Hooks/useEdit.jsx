@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export const useEditUser = async (dataUser) => {
   const token = localStorage.getItem("token");
@@ -22,6 +23,7 @@ export const useEditUser = async (dataUser) => {
 };
 
 export const useEditLocation = async (id, dataLocation) => {
+  //const navigate = useNavigate()
   const token = localStorage.getItem("token");
 
   try {
@@ -36,7 +38,13 @@ export const useEditLocation = async (id, dataLocation) => {
     );
 
     console.log(`status: ${response.status}`); //Verificando o status
+
+    if (response.status === 200) {
+      alert('Alterado com sucesso!')
+    }
+
   } catch (error) {
+    alert('Erro ao alterar local!')
     console.log(error);
   }
 };

@@ -84,6 +84,7 @@ function NewUser() {
   });
 
   async function formRegister(formValue) {
+
     let dataForm = {
       nome: formValue.nome,
       sexo: formValue.sexo,
@@ -100,8 +101,8 @@ function NewUser() {
     console.log(dataForm);
     await useCreateUser(dataForm);
 
-    alert("Usuário criado com sucesso!");
-    navigate("/login");
+    //alert("Usuário criado com sucesso!");
+    //navigate("/login");
   }
 
   //Buscar Cep
