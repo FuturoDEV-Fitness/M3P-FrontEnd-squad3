@@ -21,11 +21,16 @@ function Dashboard() {
     listAll();
   }, []);
 
+  let ativos = []
   //Lógica para mostrar usuários logados
-  const ativos = users.filter(value => {
-    return value.isLog == true
-  })  //chamar ativos.lenght
-
+  if(users){
+    ativos = users.filter(value => {
+      return value.isLog == true
+    })  //chamar ativos.lenght
+  } else{
+    null
+  }
+  
   async function listAll() {
     setUsers((await useListAllUser()).data);
     setLocations((await useListAll()).data);
