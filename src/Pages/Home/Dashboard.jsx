@@ -7,6 +7,7 @@ import Map from "../../Components/Map/Map";
 import Card from "../../Components/Card/Card";
 
 import { useListAll, useListAllUser } from "../../Hooks/useList";
+import { useEditUser } from "../../Hooks/useEdit";
 
 import Header from "../../Components/Header/Header";
 import styles from "./dashboard.module.css";
@@ -33,6 +34,14 @@ function Dashboard() {
     }
   }
 
+  console.log(users)
+
+  const ativos = users.filter(value => {
+    return value.isLog == true
+  })
+
+  console.log(ativos.length)
+
   let teste2 = teste.split(",");
   console.log(teste2);
 
@@ -45,6 +54,10 @@ function Dashboard() {
   const numLocations = locations.length;
 
   async function logout() {
+    const data = {"isLog": "false"}
+
+    await useEditUser(data)
+
     localStorage.clear();
     navigate("/login");
   }
@@ -76,8 +89,7 @@ function Dashboard() {
       <div className={styles.divTexto}>
         <h2>Venha contribuir você também!!</h2>
         <h3>
-          Atualmente, somos {numUsers} usuários cadastrados. Dos quais,{" "}
-          {numUsers} estão ativos nesse momento!
+          Atualmente, somos {numUsers} usuários cadastrados. Dos quais, {ativos.length} estão ativos nesse momento!
         </h3>
         <h3>Contamos com {numLocations} locais cadastrados!</h3>
         <p style={{ marginTop: "1em" }}>

@@ -49,7 +49,6 @@ function Login() {
 
   async function formLogin(formValue) {
     await login(formValue);
-    navigate("/");
   }
 
   return (

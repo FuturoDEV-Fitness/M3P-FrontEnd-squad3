@@ -46,24 +46,3 @@ export const useEditLocation = async (id, dataLocation) => {
     console.log(error);
   }
 };
-
-// export const useLogout = async (dataUser) => {
-//   const token = localStorage.getItem("token");
-//   const logout = localStorage.getItem("userId");
-
-//   try {
-//     const response = await axios.post(
-//       `http://localhost:3000/usuarios/${logout}`,
-//       dataUser,
-//       {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//         },
-//       }
-//     );
-//     console.log(`status: ${response.status}`);
-//   } catch (error) {
-//     console.error(error);
-//     alert("Não possível logout front");
-//   }
-// };

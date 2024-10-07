@@ -101,8 +101,7 @@ function NewUser() {
     console.log(dataForm);
     await useCreateUser(dataForm);
 
-    //alert("Usuário criado com sucesso!");
-    //navigate("/login");
+    navigate("/login");
   }
 
   //Buscar Cep

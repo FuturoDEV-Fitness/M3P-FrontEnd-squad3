@@ -7,9 +7,20 @@ export const useCreateUser = async (dataUser) => {
       dataUser
     );
 
+    if(response.status === 201) {
+      alert('Usuário cadastrado com sucesso!')
+    }
+
     console.log(`status: ${response.status}`); //Verificando o status
-  } catch (error) {
-    console.log(error);
+  }
+
+  catch (error) {
+    console.log(error)
+    // Verifica se o erro tem uma resposta para capturar o status
+    if (error.response) {
+      alert(`${error.response.data.mensagem}`);
+      return
+    } 
   }
 };
 
@@ -27,8 +38,18 @@ export const useCreateLocation = async (dataLocation) => {
       }
     );
 
+    if(response.status === 201) {
+      alert('Usuário cadastrado com sucesso!')
+    }
+
     console.log(`status: ${response.status}`); //Verificando o status
+    
   } catch (error) {
-    console.log(error);
+    console.log(error)
+    // Verifica se o erro tem uma resposta para capturar o status
+    if (error.response) {
+      alert(`${error.response.data.mensagem}`);
+      return
+    } 
   }
 };

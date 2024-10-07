@@ -91,7 +91,6 @@ function NewLocation() {
     console.log(dataForm);
     await useCreateLocation(dataForm);
 
-    alert("Local criado com sucesso!");
     navigate("/meusLocais");
   }
 

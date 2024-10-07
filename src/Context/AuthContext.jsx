@@ -1,6 +1,7 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { createContext, useEffect, useState } from "react";
+import { useEditUser } from "../Hooks/useEdit";
 
 export const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
@@ -90,12 +91,26 @@ export const AuthContextProvider = ({ children }) => {
         });
 
         setLogged(true);
+
+        const data = {"isLog": "true"}
+
+        await useEditUser(data)
+
         alert("Login efetuado com sucesso");
+        window.location.href = "/";
+
       } else {
         throw new Error("Erro ao efetuar login");
       }
-    } catch (error) {
-      console.log(error);
+    }
+
+    catch (error) {
+      console.log(error)
+      // Verifica se o erro tem uma resposta para capturar o status
+      if (error.response) {
+        alert(`${error.response.data.mensagem}`);
+        return
+      } 
     }
   }
 
