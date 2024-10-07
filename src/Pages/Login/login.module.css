@@ -1,6 +1,7 @@
 @media all{
     .containerLogin{
-        background-color: #b1b5b9;    
+        /* background-image: linear-gradient(to bottom, var(--roxo), #b7b1d2,  #d9dce0); */
+        background-image: linear-gradient(to bottom, var(--roxoEscuro), var(--roxoClaro));
         width: 400px;
         padding: 1em;
         border: 1px solid black;
@@ -42,7 +43,7 @@
     .botaoLogin{
         text-align: center;
     }
-    
+
     .linkLogin{
         text-decoration: none;
         color: #2E7D32;
@@ -83,7 +84,6 @@
 
 @media (min-width: 769px) {
     .containerLogin{
-        background-image: linear-gradient(to bottom, #757981,  #d9dce0);
         width: 500px;
     }
 }

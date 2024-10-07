@@ -48,6 +48,7 @@
         text-decoration: none;
         text-align: center;
         margin-left: 10px;
+        color: blue
     }
 
     .linkMap:hover{
@@ -94,16 +95,15 @@
         grid-area: compl;
     }
     
-
-
     .divTexto{
-        background-color: #b1b5b9;
+        background-color: white;
         width: 80vw;
         padding: 1em;
         margin: 2em auto;
-        border: 1px solid black;
+        border: 1px solid var(--verdeLogo);
         border-radius: 20px;
         text-align: center;
+        box-shadow: 6px 10px 15px var(--verdeLogo);
     }
 
     .divTexto h2{
@@ -114,6 +114,7 @@
         text-decoration: none;
         color: #2E7D32;
         font-weight: bold;
+        font-size: 1.1em;
     }
 
     .link:hover{
@@ -123,16 +124,19 @@
     .botaoLogout{
         background-color: #29B473;
         font-weight: bold;
-        width: 60px;
+        width: 70px;
         border: none;
         border-radius: 4px;
         padding: 6px 0px;
         cursor: pointer;
         margin-left: 1em;
+        font-size: 0.8em;
     }
     
     .botaoLogout:hover{
         background-color: #1c7d50;
+        transition: all 0.2s;
+        font-size: 0.9em;
     }
 
     .texth1{
@@ -151,12 +155,16 @@
     }
     
     .divTexto{
-        background-image: linear-gradient(to bottom, #757981,  #d9dce0);
         width: 600px;
     }
 
     .botaoLogout{
-        width: 80px;
-        padding: 6px 16px;
+        width: 90px;
+        padding: 10px 16px;
+        font-size: 0.9em;
+    }
+
+    .botaoLogout:hover{
+        font-size: 1em;
     }
 }

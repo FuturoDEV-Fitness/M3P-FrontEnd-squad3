@@ -20,13 +20,21 @@ function Map(){
         setLocations((await useListAll()).data)
     }
 
-    const markers = locations.map(item => {
-        return {
+    let markers
+
+    if(locations){
+        markers = locations.map(item => {
+            return {
             lat: Number(item.latitude),
             long: Number(item.longitude),
             popUp: `${item.descricao}`
-        }
-    })
+            }
+        })
+    } else {
+        markers = [{lat: -27.59344, long: -48.56159, popUp: 'Local fixo'}]
+    }
+
+    //Se não houver nenhum local cadastrado, mostra um ponto fixo no mapa.
 
     return(
         <MapContainer center={[-27.59344, -48.56159]} zoom={11} className={styles.containerMap}>

@@ -70,7 +70,7 @@ function EditUser() {
       setValue("cep", dados.cep);
       setValue("email", dados.email);
 
-      let splitAdress = dados.endereco.split(","); //endreço é um array de 6 posições!
+      let splitAdress = dados.endereco.split(","); //endreço vem como string e é transformado em um array de 6 posições!
       console.log(splitAdress);
 
       setValue("ruaUsuario", splitAdress[0]);
@@ -84,10 +84,6 @@ function EditUser() {
   };
 
   let dataCep = {};
-
-  //Função para mostrar ou ocultar a senha
-  const [showPassword, setShowPassword] = useState(false);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const {
     register,
@@ -104,12 +100,9 @@ function EditUser() {
       nome: formValue.nome,
       sexo: formValue.sexo,
       data_nascimento: formValue.data_nascimento,
-
       email: formValue.email,
-      cep_endereco: formValue.cep,
-      //   senha: formValue.password,
-
-      endereco: `${formValue.cep}, ${formValue.ruaUsuario}, ${formValue.bairroUsuario}, ${formValue.numeroUsuario}, ${formValue.cidadeUsuario}, ${formValue.estadoUsuario}`,
+      cep: formValue.cep,
+      endereco: `${formValue.ruaUsuario}, ${formValue.bairroUsuario}, ${formValue.numeroUsuario}, ${formValue.cidadeUsuario}, ${formValue.estadoUsuario}`,
       //endereco é uma coluna onde comtém todos os dados de endereço do usuário
     };
 
@@ -136,6 +129,10 @@ function EditUser() {
   };
 
   async function logout() {
+    const data = {"isLog": "false"}
+
+    await useEditUser(data)
+
     localStorage.clear();
     navigate("/login");
   }
@@ -205,29 +202,6 @@ function EditUser() {
               {errors.email.message}
             </p>
           )}
-
-          {/* <label htmlFor="password">Senha</label>
-          <div className={styles.containerSenha}>
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Informe uma senha"
-              name="password"
-              {...register("password")}
-            />
-
-            <div
-              onClick={handleClickShowPassword}
-              className={styles.iconeSenha}
-            >
-              {showPassword ? <VisibilityOff /> : <Visibility />}
-            </div>
-          </div>
-          {errors?.password && (
-            <p className={styles.msgErro}>
-              <WarningAmberIcon fontSize="small" sx={{ mr: 1 }} />
-              {errors.password.message}
-            </p>
-          )} */}
 
           <label htmlFor="cep">CEP</label>
           <input

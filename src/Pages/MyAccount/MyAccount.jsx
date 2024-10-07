@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import { useEditUser } from "../../Hooks/useEdit";
 import { useDeleteUser } from "../../Hooks/useDelete";
 import { useListAllLocation, useListUserId } from "../../Hooks/useList";
 
@@ -22,7 +23,12 @@ function MyAccount() {
     ListLocations();
   }, []);
 
-  console.log(locations);
+let numLocations = 0
+  if(locations.length > 0){
+    numLocations = locations.length
+  } else {
+    numLocations = 0
+  }
 
   async function ListLocations() {
     setLocations((await useListAllLocation()).data);
@@ -32,10 +38,9 @@ function MyAccount() {
     setUser((await useListUserId()).data);
   }
 
-  console.log(user);
-  console.log(locations);
-  const numLocations = locations.length;
-
+  //console.log(user);
+  //console.log(locations);
+  
   function editar() {
     navigate("/editarUsuario");
   }
@@ -45,7 +50,11 @@ function MyAccount() {
     logout();
   }
 
-  function logout() {
+  async function logout() {
+    const data = {"isLog": "false"}
+
+    await useEditUser(data)
+
     localStorage.clear();
     navigate("/login");
   }
@@ -121,7 +130,7 @@ function MyAccount() {
       </Card>
 
       <p className={styles.atencao}>
-        <span style={{ color: "red" }}>ATENÇÃO</span>: Ao clicar em excluir
+        <span>ATENÇÃO</span>: Ao clicar em excluir
         conta, todos os locais cadastrado por você serão excluídos!
       </p>
     </div>

@@ -5,25 +5,22 @@
         padding: 1em;
     }
 
-    .testep {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
     .botaoLogout{
         background-color: #29B473;
         font-weight: bold;
-        width: 60px;
+        width: 70px;
         border: none;
         border-radius: 4px;
         padding: 6px 0px;
         cursor: pointer;
         margin-left: 1em;
+        font-size: 0.8em;
     }
     
     .botaoLogout:hover{
         background-color: #1c7d50;
+        transition: all 0.2s;
+        font-size: 0.9em;
     }
 
     .divTitulo>h3{
@@ -55,35 +52,15 @@
         margin-top: 1em;
     }
 
-    .divLink{
-        display: flex;
-        align-items: center;
-    }
-
-    .link{
-        text-decoration: none;
-        text-align: center;
-        margin-left: 10px;
-    }
-
-    .link:hover{
-        text-decoration: underline var(--verdeLogo) 2px;
-    }
-
-
-    .divBotoes{
-        text-align: center;
-        margin: auto;
-    }
-
     .divGrid{
         display: grid;
         column-gap: 2em;
         row-gap: 0.4em;
     
         grid-template-areas: "rua rua"
-                             "cep bairro"
-                             "num compl"
+                             "bairro bairro"
+                             "cep num"
+                             "compl compl"
     }
     
     .rua{
@@ -111,15 +88,41 @@
         text-align: center;
     }
 
+    .link{
+        text-decoration: none;
+        text-align: center;
+        margin-left: 10px;
+        color: blue;
+    }
+
+    .link:hover{
+        text-decoration: underline var(--verdeLogo) 2px;
+    }
+
+    .divBotoes{
+        text-align: center;
+        margin: auto;
+    }
+
     .descricao{
         text-align: center;
         margin: 1em 0;
+    }
+
+    .sugestao{
+        text-align: left;
+        margin: 0 0 1em 1em;
     }
 }
 
 @media(min-width: 769px){
     .botaoLogout{
-        width: 80px;
-        padding: 6px 16px;
+        width: 90px;
+        padding: 10px 16px;
+        font-size: 0.9em;
+    }
+
+    .botaoLogout:hover{
+        font-size: 1em;
     }
 }

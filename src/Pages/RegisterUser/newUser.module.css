@@ -1,6 +1,6 @@
 @media all{
     .containerNovoUsuario{
-        background-color: #b1b5b9;
+        background-image: linear-gradient(to bottom, var(--roxoEscuro), var(--roxoClaro));
         width: 400px; 
         padding: 1em;  
         border: 1px solid black;
@@ -71,12 +71,10 @@
         right: 10px;
         top: 5px;
     }
-
 }
 
 @media (min-width: 769px) {
     .containerNovoUsuario{
-        background-image: linear-gradient(to bottom, #757981,  #d9dce0);
         width: 500px; 
     }
 

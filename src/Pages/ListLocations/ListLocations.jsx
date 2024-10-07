@@ -10,13 +10,13 @@ import Header from "../../Components/Header/Header";
 
 import { useDeleteLocation } from "../../Hooks/useDelete";
 import { useListAllLocation } from "../../Hooks/useList";
+import { useEditUser } from "../../Hooks/useEdit";
+
 import styles from "./listLocations.module.css";
 function ListLocations() {
   const navigate = useNavigate();
 
   const [locations, setLocations] = useState([]);
-
-  let teste = [];
 
   useEffect(() => {
     ListLocations();
@@ -37,13 +37,14 @@ function ListLocations() {
     ListLocations();
   }
 
-  function logout() {
+  async function logout() {
+    const data = {"isLog": "false"}
+
+    await useEditUser(data)
+
     localStorage.clear();
     navigate("/login");
   }
-
-  let string = "Alongamento, Caminhada, Yoga";
-  let array = string.split(",");
 
   return (
     <div>
@@ -71,16 +72,18 @@ function ListLocations() {
 
             <div className={styles.divConteudo}>
               <p className={styles.descricao}>{item.descricao}</p>
-              <p className={styles.descricao}>
+              <p className={styles.sugestao}>
                 Sugestões de atividades físicas nesse local:
               </p>
-              <p className={styles.testep}>{item.tipoAtividade}</p>
 
+              {/*Lógica para mostrar as atividades */}
               <ul type={"circle"}>
-                {/* {array ? array.map((atividade, index) => (
-                                <li key={index}>{atividade}</li>
-                            )) : <li>Caminhada</li>} */}
-                {/* Se o usuário não marcar nada, vou exibir Alongamento */}
+                {item.itens_checkbox.split(',').length > 0 ? 
+                  (item.itens_checkbox.split(',').map((teste, index) => (
+                    <li key={index}>{teste}</li>
+                  ))
+                ): (<li>Caminhada</li>
+                )} {/*Se não tiver nada, mostrar Caminhada*/}
               </ul>
 
               <div className={styles.divFlex}>
