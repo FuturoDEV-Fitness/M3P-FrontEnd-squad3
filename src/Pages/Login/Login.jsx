@@ -61,7 +61,7 @@ function Login() {
       <div className={styles.containerLogin}>
         <h1>Seja bem vinda(o) ao</h1>
         <div className={styles.logoLogin}>
-          <h2>Exercite</h2>
+          <h2>BuscaFit</h2>
           <img src="/logo.png" alt="" width={"80px"} />
         </div>
 
