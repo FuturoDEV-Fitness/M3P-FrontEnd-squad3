@@ -16,8 +16,6 @@ function ListLocations() {
 
   const [locations, setLocations] = useState([]);
 
-  let teste = [];
-
   useEffect(() => {
     ListLocations();
   }, []);
@@ -42,8 +40,17 @@ function ListLocations() {
     navigate("/login");
   }
 
-  let string = "Alongamento, Caminhada, Yoga";
-  let array = string.split(",");
+  //Lógica para mostrar as atividades
+  let checkbox = "";
+  for (let i = 0; i < locations.length; i++) {
+    if (i === locations.length - 1) {
+      checkbox += locations[i].itens_checkbox;
+    } else {
+      checkbox += `${locations[i].itens_checkbox},`;
+    }
+  }
+
+  let atividades = checkbox.split(",");
 
   return (
     <div>
@@ -71,18 +78,21 @@ function ListLocations() {
 
             <div className={styles.divConteudo}>
               <p className={styles.descricao}>{item.descricao}</p>
-              <p className={styles.descricao}>
+              <p className={styles.sugestao}>
                 Sugestões de atividades físicas nesse local:
               </p>
-              <p className={styles.testep}>{item.tipoAtividade}</p>
 
               <ul type={"circle"}>
-                {/* {array ? array.map((atividade, index) => (
-                                <li key={index}>{atividade}</li>
-                            )) : <li>Caminhada</li>} */}
-                {/* Se o usuário não marcar nada, vou exibir Alongamento */}
+                {atividades.length > 0 ? (
+                  atividades.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))
+                ) : (
+                  <li>Caminhada</li>
+                )}
+                {/* Se não houver nada, exibe Caminhada */}
               </ul>
-
+              
               <div className={styles.divFlex}>
                 <img
                   src="/local.png"

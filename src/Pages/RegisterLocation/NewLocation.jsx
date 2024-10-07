@@ -296,7 +296,7 @@ function NewLocation() {
                 value="Alongamento"
                 {...register("atividades")}
               />
-              <label htmlFor="tipo" className={styles.labelCheckbox}>
+              <label htmlFor="tipo">
                 Alongamento
               </label>
             </div>

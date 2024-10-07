@@ -5,12 +5,6 @@
         padding: 1em;
     }
 
-    .testep {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
     .botaoLogout{
         background-color: #29B473;
         font-weight: bold;
@@ -55,35 +49,15 @@
         margin-top: 1em;
     }
 
-    .divLink{
-        display: flex;
-        align-items: center;
-    }
-
-    .link{
-        text-decoration: none;
-        text-align: center;
-        margin-left: 10px;
-    }
-
-    .link:hover{
-        text-decoration: underline var(--verdeLogo) 2px;
-    }
-
-
-    .divBotoes{
-        text-align: center;
-        margin: auto;
-    }
-
     .divGrid{
         display: grid;
         column-gap: 2em;
         row-gap: 0.4em;
     
         grid-template-areas: "rua rua"
-                             "cep bairro"
-                             "num compl"
+                             "bairro bairro"
+                             "cep num"
+                             "compl compl"
     }
     
     .rua{
@@ -111,9 +85,30 @@
         text-align: center;
     }
 
+    .link{
+        text-decoration: none;
+        text-align: center;
+        margin-left: 10px;
+        color: blue;
+    }
+
+    .link:hover{
+        text-decoration: underline var(--verdeLogo) 2px;
+    }
+
+    .divBotoes{
+        text-align: center;
+        margin: auto;
+    }
+
     .descricao{
         text-align: center;
         margin: 1em 0;
+    }
+
+    .sugestao{
+        text-align: left;
+        margin: 0 0 1em 1em;
     }
 }
 

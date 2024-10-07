@@ -121,7 +121,7 @@ function MyAccount() {
       </Card>
 
       <p className={styles.atencao}>
-        <span style={{ color: "red" }}>ATENÇÃO</span>: Ao clicar em excluir
+        <span>ATENÇÃO</span>: Ao clicar em excluir
         conta, todos os locais cadastrado por você serão excluídos!
       </p>
     </div>

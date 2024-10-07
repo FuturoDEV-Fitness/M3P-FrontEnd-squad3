@@ -206,29 +206,6 @@ function EditUser() {
             </p>
           )}
 
-          {/* <label htmlFor="password">Senha</label>
-          <div className={styles.containerSenha}>
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Informe uma senha"
-              name="password"
-              {...register("password")}
-            />
-
-            <div
-              onClick={handleClickShowPassword}
-              className={styles.iconeSenha}
-            >
-              {showPassword ? <VisibilityOff /> : <Visibility />}
-            </div>
-          </div>
-          {errors?.password && (
-            <p className={styles.msgErro}>
-              <WarningAmberIcon fontSize="small" sx={{ mr: 1 }} />
-              {errors.password.message}
-            </p>
-          )} */}
-
           <label htmlFor="cep">CEP</label>
           <input
             type="text"

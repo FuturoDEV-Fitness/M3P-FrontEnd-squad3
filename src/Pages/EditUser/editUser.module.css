@@ -1,12 +1,11 @@
 @media all{
     .containerNovoUsuario{
-        background-color: #b1b5b9;
+        background-image: linear-gradient(to bottom, var(--roxoEscuro), var(--roxoClaro));
         width: 400px; 
         padding: 1em;  
         border: 1px solid black;
         border-radius: 20px; 
         margin: 2em auto;
-    
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -65,33 +64,10 @@
         color: rgb(145, 3, 3);
         margin-bottom: 0.5em;
     }
-
-    .containerSenha{
-        position: relative;
-        width: 260px;
-        height: 32px;
-        margin-bottom: 0.5em;
-    }
-    
-    .containerSenha input{
-        position: absolute;
-        top:0;
-        left:0;
-        width: 100%;
-        height: 100%;
-    }
-    
-    .iconeSenha{
-        position: absolute;
-        right: 10px;
-        top: 5px;
-    }
-
 }
 
 @media (min-width: 769px) {
     .containerNovoUsuario{
-        background-image: linear-gradient(to bottom, #757981,  #d9dce0);
         width: 500px; 
     }
 

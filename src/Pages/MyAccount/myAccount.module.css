@@ -25,29 +25,13 @@
         margin-bottom: 0.5em;
     }
 
-    .divTitulo>p{
-        text-align: left;
-        font-weight: bold;
-    }
-    
-    .divTitulo p:last-child{
-        text-align: right;
-        font-weight: bold;
-    }
-
     .divConteudo{
         padding-left: 1em;
         margin-top: 1em;
     }
 
-    .divConteudo li{
-        margin-left: 2em;    
-    }
-    
-    .divFlex{
-        display: flex;
-        align-items: center;
-        margin-top: 1em;
+    .descricao{
+        margin: 1em 0;
     }
 
     .divBotoes{
@@ -55,47 +39,19 @@
         margin: auto;
     }
 
-    .divGrid{
-        display: grid;
-        column-gap: 2em;
-        row-gap: 0.4em;
-    
-        grid-template-areas: "rua rua"
-                             "cep bairro"
-                             "num compl"
-                             "link link";
-    }
-    
-    .rua{
-        grid-area: rua;
-    }
-    .cep{
-        grid-area: cep;
-    }
-    .bairro{
-        grid-area: bairro;
-    }
-    .num{
-        grid-area: num;
-    }
-    .rua{
-        grid-area: rua;
-    }
-    .compl{
-        grid-area: compl;
-    }
-    .link{
-        grid-area: link;
-    }
-    
-    .descricao{
-        margin: 1em 0;
-    }
-
     .atencao{
         text-align: center;
         font-size: 1.2em;
     }
+
+    .atencao span{
+        color: red
+    }
+
+    .atencao:hover{
+        font-size: 1.3em;
+    }
+
 }
 
 @media(min-width: 769px){

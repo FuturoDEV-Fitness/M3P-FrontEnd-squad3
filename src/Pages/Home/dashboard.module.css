@@ -48,6 +48,7 @@
         text-decoration: none;
         text-align: center;
         margin-left: 10px;
+        color: blue
     }
 
     .linkMap:hover{
@@ -94,16 +95,15 @@
         grid-area: compl;
     }
     
-
-
     .divTexto{
-        background-color: #b1b5b9;
+        background-color: white;
         width: 80vw;
         padding: 1em;
         margin: 2em auto;
-        border: 1px solid black;
+        border: 1px solid var(--verdeLogo);
         border-radius: 20px;
         text-align: center;
+        box-shadow: 6px 10px 15px var(--verdeLogo);
     }
 
     .divTexto h2{
@@ -114,6 +114,7 @@
         text-decoration: none;
         color: #2E7D32;
         font-weight: bold;
+        font-size: 1.1em;
     }
 
     .link:hover{
@@ -151,7 +152,6 @@
     }
     
     .divTexto{
-        background-image: linear-gradient(to bottom, #757981,  #d9dce0);
         width: 600px;
     }
 

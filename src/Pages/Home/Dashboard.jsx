@@ -100,7 +100,7 @@ function Dashboard() {
       </div>
 
       <h1 className={styles.texth1}>
-        Esses são os locais cadastrados no
+        Confira os locais cadastrados no
         <span style={{ color: "var(--verdeLogo)" }}>
           <em> BuscaFit</em>
         </span>{" "}
