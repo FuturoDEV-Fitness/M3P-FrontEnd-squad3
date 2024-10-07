@@ -14,6 +14,8 @@ import Header from "../../Components/Header/Header.jsx";
 import useCep from "../../Hooks/useCep.jsx";
 
 import { useEditLocation } from "../../Hooks/useEdit.jsx";
+import { useEditUser } from "../../Hooks/useEdit.jsx";
+
 import styles from "./editLocation.module.css";
 
 const formSchema = yup.object().shape({
@@ -155,7 +157,11 @@ function EditLocation() {
     }
   };
 
-  function logout() {
+  async function logout() {
+    const data = {"isLog": "false"}
+
+    await useEditUser(data)
+
     localStorage.clear();
     navigate("/login");
   }
@@ -389,7 +395,7 @@ function EditLocation() {
                 {...register("atividades")}
               />
               <label htmlFor="atividades" className={styles.labelCheckbox}>
-                Musculacao
+                Musculação
               </label>
             </div>
             <div>

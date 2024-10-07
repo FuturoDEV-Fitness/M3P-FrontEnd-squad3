@@ -10,6 +10,8 @@ import Header from "../../Components/Header/Header";
 
 import { useDeleteLocation } from "../../Hooks/useDelete";
 import { useListAllLocation } from "../../Hooks/useList";
+import { useEditUser } from "../../Hooks/useEdit";
+
 import styles from "./listLocations.module.css";
 function ListLocations() {
   const navigate = useNavigate();
@@ -35,22 +37,14 @@ function ListLocations() {
     ListLocations();
   }
 
-  function logout() {
+  async function logout() {
+    const data = {"isLog": "false"}
+
+    await useEditUser(data)
+
     localStorage.clear();
     navigate("/login");
   }
-
-  //Lógica para mostrar as atividades
-  let checkbox = "";
-  for (let i = 0; i < locations.length; i++) {
-    if (i === locations.length - 1) {
-      checkbox += locations[i].itens_checkbox;
-    } else {
-      checkbox += `${locations[i].itens_checkbox},`;
-    }
-  }
-
-  let atividades = checkbox.split(",");
 
   return (
     <div>
@@ -82,17 +76,16 @@ function ListLocations() {
                 Sugestões de atividades físicas nesse local:
               </p>
 
+              {/*Lógica para mostrar as atividades */}
               <ul type={"circle"}>
-                {atividades.length > 0 ? (
-                  atividades.map((item, index) => (
-                    <li key={index}>{item}</li>
+                {item.itens_checkbox.split(',').length > 0 ? 
+                  (item.itens_checkbox.split(',').map((teste, index) => (
+                    <li key={index}>{teste}</li>
                   ))
-                ) : (
-                  <li>Caminhada</li>
-                )}
-                {/* Se não houver nada, exibe Caminhada */}
+                ): (<li>Caminhada</li>
+                )} {/*Se não tiver nada, mostrar Caminhada*/}
               </ul>
-              
+
               <div className={styles.divFlex}>
                 <img
                   src="/local.png"

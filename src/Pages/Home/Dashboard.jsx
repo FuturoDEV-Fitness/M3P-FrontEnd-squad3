@@ -16,43 +16,37 @@ function Dashboard() {
 
   const [users, setUsers] = useState([]);
   const [locations, setLocations] = useState([]);
-  // function logout() {
-  //   localStorage.clear();
-  //   navigate("/login");
-  // }
 
   useEffect(() => {
     listAll();
   }, []);
 
-  let teste = "";
-  for (let i = 0; i < locations.length; i++) {
-    if (i === locations.length - 1) {
-      teste += locations[i].itens_checkbox;
-    } else {
-      teste += `${locations[i].itens_checkbox},`;
-    }
-  }
-
-  console.log(users)
-
+  //Lógica para mostrar usuários logados
   const ativos = users.filter(value => {
     return value.isLog == true
-  })
-
-  console.log(ativos.length)
-
-  let teste2 = teste.split(",");
-  console.log(teste2);
+  })  //chamar ativos.lenght
 
   async function listAll() {
     setUsers((await useListAllUser()).data);
     setLocations((await useListAll()).data);
   }
 
-  const numUsers = users.length;
-  const numLocations = locations.length;
+  //Lógica para pegar o número de usuários
+  let numUsers = 0
+  let numLocations = 0
 
+  if(users){
+    numUsers = users.length
+  } else {
+    numUsers = 0
+  }
+
+  if(locations){
+    numLocations = locations.length
+  } else {
+    numLocations = 0
+  }
+  
   async function logout() {
     const data = {"isLog": "false"}
 
@@ -106,7 +100,7 @@ function Dashboard() {
         </span>{" "}
       </h1>
 
-      {locations.length > 0 ? (
+      {locations ? (
         locations.map((item) => (
           <Card key={item.id}>
             <div className={styles.divTitulo}>
@@ -125,15 +119,14 @@ function Dashboard() {
                 Sugestões de atividades físicas nesse local:
               </p>
 
+              {/*Lógica para mostrar as atividades */}
               <ul type={"circle"}>
-                {teste2.length > 0 ? (
-                  teste2.map((atividade, index) => (
-                    <li key={index}>{atividade}</li>
+                {item.itens_checkbox.split(',').length > 0 ? 
+                  (item.itens_checkbox.split(',').map((teste, index) => (
+                    <li key={index}>{teste}</li>
                   ))
-                ) : (
-                  <li>Caminhada</li>
-                )}
-                {/* Se o usuário não marcar nada, vou exibir Caminhada */}
+                ): (<li>Caminhada</li>
+                )} {/*Se não tiver nada, mostrar Caminhada*/}
               </ul>
 
               <div className={styles.divFlex}>

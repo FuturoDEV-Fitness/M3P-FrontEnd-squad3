@@ -124,16 +124,19 @@
     .botaoLogout{
         background-color: #29B473;
         font-weight: bold;
-        width: 60px;
+        width: 70px;
         border: none;
         border-radius: 4px;
         padding: 6px 0px;
         cursor: pointer;
         margin-left: 1em;
+        font-size: 0.8em;
     }
     
     .botaoLogout:hover{
         background-color: #1c7d50;
+        transition: all 0.2s;
+        font-size: 0.9em;
     }
 
     .texth1{
@@ -156,7 +159,12 @@
     }
 
     .botaoLogout{
-        width: 80px;
-        padding: 6px 16px;
+        width: 90px;
+        padding: 10px 16px;
+        font-size: 0.9em;
+    }
+
+    .botaoLogout:hover{
+        font-size: 1em;
     }
 }

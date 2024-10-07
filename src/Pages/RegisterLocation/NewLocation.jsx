@@ -12,6 +12,7 @@ import theme from "../../Components/Temas/temaBotao";
 import Header from "../../Components/Header/Header.jsx";
 import useCep from "../../Hooks/useCep.jsx";
 import { useCreateLocation } from "../../Hooks/useCreate.jsx";
+import { useEditUser } from "../../Hooks/useEdit.jsx";
 
 import styles from "./newLocation.module.css";
 
@@ -107,7 +108,11 @@ function NewLocation() {
     }
   };
 
-  function logout() {
+  async function logout() {
+    const data = {"isLog": "false"}
+
+    await useEditUser(data)
+
     localStorage.clear();
     navigate("/login");
   }
@@ -341,7 +346,7 @@ function NewLocation() {
                 {...register("atividades")}
               />
               <label htmlFor="atividades" className={styles.labelCheckbox}>
-                Musculacao
+                Musculação
               </label>
             </div>
             <div>
