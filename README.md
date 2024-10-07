@@ -28,10 +28,6 @@ A aplicação possui 8 páginas:
 * Tela de Cadastro de novo local - Nessa tela, o usuário pode cadastrar um local. Para tal, ele deve preencher o formulário com informações sobre o local;
 * Tela de edição - Nessa tela, o usuário poderá editar alguma informação sobre um local cadastrado, caso deseje.
   
-### Abaixo demostração do sistema sendo executado!
-
-
-![Exercite](https://github.com/hiediferreira/Exercite/assets/150954299/20aa01eb-70e2-4b74-9fca-eed9901c2cfe)
 
 # ![localP](https://github.com/hiediferreira/Exercite/assets/150954299/bdd10282-bb44-4da8-a800-f38c3a66f4e3) Recursos utilizados
 * React;
