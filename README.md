@@ -3,7 +3,7 @@
 
 # ![localP](https://github.com/hiediferreira/Exercite/assets/150954299/bdd10282-bb44-4da8-a800-f38c3a66f4e3) Bem vinda(o) ao *Busca Fit*! 
 
-*BuscaFit* foi criado como projeto final do curso de Desenvolvimento Web do projeto *Floripa Mais Tech*!!
+*BuscaFit* foi criado como projeto final do curso de Desenvolvimento Web do projeto *Floripa Mais Tech*!! O projeto possui FrontEnd e BackEnd.
 
 # ![localP](https://github.com/hiediferreira/Exercite/assets/150954299/bdd10282-bb44-4da8-a800-f38c3a66f4e3) Objetivo
 *BuscaFit* é uma plataforma onde o usuário pode cadastrar dicas de lugares para a prática de atividades físicas.
