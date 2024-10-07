@@ -56,7 +56,7 @@ function ListLocations() {
         </button>
       </Header>
 
-      {locations.length > 0 ? (
+      {locations > 0 ? (
         locations.map((item) => (
           <Card key={item.id}>
             <div className={styles.divTitulo}>
