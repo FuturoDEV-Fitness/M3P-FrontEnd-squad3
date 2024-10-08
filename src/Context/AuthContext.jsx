@@ -3,6 +3,8 @@ import { jwtDecode } from "jwt-decode";
 import { createContext, useEffect, useState } from "react";
 import { useEditUser } from "../Hooks/useEdit";
 
+const host = 'https://m3p-backend-squad3-p7i7.onrender.com'
+
 export const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [session, setSession] = useState({
@@ -69,9 +71,10 @@ export const AuthContextProvider = ({ children }) => {
   }, []); //1ª renderização
 
   async function login(data) {
+    //"http://localhost:3000/autentic/login"
     try {
       const response = await axios.post(
-        "http://localhost:3000/autentic/login",
+        `${host}/autentic/login`,
         data
       );
 
