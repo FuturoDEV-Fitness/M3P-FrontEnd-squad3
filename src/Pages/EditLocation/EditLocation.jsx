@@ -63,9 +63,14 @@ function EditLocation() {
 
   const [location, setLocation] = useState([]);
 
+  const host = 'https://m3p-backend-squad3-p7i7.onrender.com'
+
   const getLocation = async () => {
+    //`http://localhost:3000/locais/${id}`
     try {
-      let response = await fetch(`http://localhost:3000/locais/${id}`, {
+      let response = await fetch(
+        `${host}/locais/${id}`, 
+        {
         headers: {
           Authorization: `Bearer ${token}`,
         },

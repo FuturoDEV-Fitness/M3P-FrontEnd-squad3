@@ -48,14 +48,19 @@ function EditUser() {
 
   const navigate = useNavigate();
 
+  const host = 'https://m3p-backend-squad3-p7i7.onrender.com'
+
   const id = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
 
   const [user, setUser] = useState([]);
 
   const getUser = async () => {
+    //`http://localhost:3000/usuarios/${id}`
     try {
-      let response = await fetch(`http://localhost:3000/usuarios/${id}`, {
+      let response = await fetch(
+        `${host}/usuarios/${id}`,
+        {
         headers: {
           Authorization: `Bearer ${token}`,
         },
