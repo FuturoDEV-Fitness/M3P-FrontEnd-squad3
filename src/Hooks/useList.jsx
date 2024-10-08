@@ -34,7 +34,7 @@ export const useListAllUser = async () => {
   let data;
   try {
     const response = await axios.get(
-      `${host}autentic/listarTodosUsu`,
+      `${host}/autentic/listarTodosUsu`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
