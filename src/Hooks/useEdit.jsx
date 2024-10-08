@@ -1,13 +1,15 @@
 import axios from "axios";
 
+const host = 'https://m3p-backend-squad3-p7i7.onrender.com'
+
 export const useEditUser = async (dataUser) => {
+  //`http://localhost:3000/usuarios/${id}`
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("userId");
 
   try {
     const response = await axios.put(
-      `http://localhost:3000/usuarios/${id}`,
-      dataUser,
+      `${host}/usuarios/${id}`, dataUser,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -22,13 +24,12 @@ export const useEditUser = async (dataUser) => {
 };
 
 export const useEditLocation = async (id, dataLocation) => {
-  //const navigate = useNavigate()
+  //`http://localhost:3000/locais/${id}`
   const token = localStorage.getItem("token");
 
   try {
     const response = await axios.put(
-      `http://localhost:3000/locais/${id}`,
-      dataLocation,
+      `${host}/locais/${id}`, dataLocation,
       {
         headers: {
           Authorization: `Bearer ${token}`,

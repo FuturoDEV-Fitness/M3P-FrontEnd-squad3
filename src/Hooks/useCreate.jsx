@@ -1,9 +1,12 @@
 import axios from "axios";
 
+const host = 'https://m3p-backend-squad3-p7i7.onrender.com'
+
 export const useCreateUser = async (dataUser) => {
+  //"http://localhost:3000/autentic/cadastroUsuario"
   try {
     const response = await axios.post(
-      "http://localhost:3000/autentic/cadastroUsuario",
+      `${host}/autentic/cadastroUsuario`,
       dataUser
     );
 
@@ -25,11 +28,12 @@ export const useCreateUser = async (dataUser) => {
 };
 
 export const useCreateLocation = async (dataLocation) => {
+  //"http://localhost:3000/locais"
   const token = localStorage.getItem("token");
 
   try {
     const response = await axios.post(
-      "http://localhost:3000/locais",
+      `${host}/locais`,
       dataLocation,
       {
         headers: {
